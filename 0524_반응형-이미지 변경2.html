@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title> 반응형-이미지 변경 </title>
+
+<style>
+
+   @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+   *{ box-sizing:border-box; margin:0; outline:0 }
+
+   body { font-family: 'Nanum Gothic', sans-serif }
+    
+    
+    #header {
+        width:100%;  /* 세로값은 그림사이즈만큼 알아서 차게 지정x */
+        position: relative;
+    }
+    
+    #image {
+        width:100%;
+        display: block;
+    }
+    
+    #header>h1 {
+        position: absolute;
+        top:30%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        color:#FFF;
+        font-size: 3rem;
+        text-shadow: 0 0 5px rgba(0,0,0,.5); /* 제자리 그림자-네온효과 */
+        /* 그림자효과 : 가로, 세로, 블러값, 그림자색 */
+        text-transform: uppercase;
+        white-space: nowrap; /* 자동 줄바꿈 방지 */
+        border-top: 3px solid #FFF;
+        border-bottom: 3px solid #FFF;
+        padding:7px 0;
+        
+        animation: fromBottom .5s both;
+    }
+    
+    
+    
+    @keyframes fromBottom {
+        from { transform: translate(-50%,0); opacity: 0 }
+        to { transform: translate(-50%,-50%); opacity: 1}
+        /* 애니메이션 효과 사용하면 transform효과가 사라짐 위치 지정한값 그대로 사용해야 원래위치로 보임 */
+    }
+    
+    
+    @media screen and (max-width:700px){
+        #header>h1 { font-size: 1.8rem }
+    }
+        
+    
+    
+
+</style>
+    
+      
+    <!-- jQuery 라이브러리 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+    
+    
+<script>
+    
+    // 화면 해상도에 따라 이미지 자동 변경
+    function autoChange(){
+        // 화면의 폭이 700px 미만이면 모바일용 이미지(세로형)로 변경하고,
+        if($(this).width() < 700 )
+           $('#image').attr('src','images/head_image2.jpg')
+        
+        // 화면의 폭이 700px 이상이면 pc용 이미지(가로형)로 변경
+        else 
+            $('#image').attr('src','images/head_image1.jpg')        
+    }
+    
+    $(document).ready(autoChange);  // 페이지가 열릴 때 autoChange 실행
+    $(window).resize(autoChange);  // 창크기를 조절할 때 autoChange 실행
+    
+    
+    
+</script>    
+
+</head>
+
+<body>
+    
+    <header id="header">
+        <img src="images/head_image1.jpg" alt="메인 이미지"  id="image" />
+        <h1>beautiful heart tree</h1>
+    </header>
+    
+
+</body>
+</html>

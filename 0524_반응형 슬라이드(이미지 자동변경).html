@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title> 반응형 슬라이드(이미지 자동변경)</title>
+
+<style>
+
+   @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+   *{ box-sizing:border-box; margin:0; outline:0 }
+
+   body {
+       font-family: 'Nanum Gothic', sans-serif;
+   }
+    
+    
+    #header {
+        width:100%;
+        position: relative;
+    }
+    
+    .slide {  /* 각 슬라이드 이미지 */
+        width:100%; display:none;
+    }
+    
+    .slide:first-child { display: block }
+
+    .button {
+        position:absolute;
+        top:50%;
+        transform:translateY(-50%);
+        width:40px;
+        height: 60px;
+        color: red;
+        font-size: 3rem;
+        text-align: center;
+        cursor: pointer;
+        border:1px solid red;
+        border-radius: 10px;
+        
+    }
+    
+    .left { left:10px }
+   .right { right:10px }
+    
+    
+    #circlebox {
+        position:absolute;
+        bottom:10px;
+        left:50%;
+        transform:translateX(-50%);
+        background:rgba(0,0,0,.5);
+        border-radius: 20px;
+        padding:10px 15px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .circle {
+        width:20px;
+        height: 20px;
+        border:2px solid #FFF; 
+        border-radius: 50px;
+        margin:0 10px;
+        transition:.3s;
+        cursor: pointer;
+    }
+    
+    .circle:first-child { transform:scale(1.5);background:#FFF } /* 첫번째 서클버튼만 흰색 */
+    
+    
+    .caption {
+        position: absolute;
+        top: 50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        font-size: 4rem;
+        color:#FFF;
+        display: none;
+    }
+    
+    
+    
+</style>
+    
+   
+    <!-- jQuery 라이브러리 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+    
+    
+<script>
+    
+    // 화면 해상도에 따라 이미지 변경하기
+    function autoChange(){
+        if($(window).width() < 700 ){
+            $('.slide').eq(0).attr('src','images/himage11.jpg');
+            $('.slide').eq(1).attr('src','images/himage2.jpg');
+            $('.slide').eq(2).attr('src','images/himage3.jpg');
+        }
+        else {
+            $('.slide').eq(0).attr('src','images/back3.jpg');
+            $('.slide').eq(1).attr('src','images/back2.jpg');
+            $('.slide').eq(2).attr('src','images/back1.jpg');
+        };
+        
+    };
+    
+    // 창 열릴때, 창크기 조절할때 autoChange 실행하기
+    $(document).ready(autoChange);
+    $(window).resize(autoChange);
+    
+    
+    // 슬라이드용------------------------------------------------------
+    var slideNo = 0;
+    var loop;
+    
+    function slide(no){
+        slideNo += no;  // 전달받은 값만큼 슬라이드 번호적용
+          
+        if(slideNo>2) slideNo=0;  // 슬라이드값이 2(세번째)보다 크면 0(첫번째)
+        if(slideNo<0) slideNo=2;
+        
+        $('.slide').hide();  // 모든 슬라이드 숨기기
+        $('.slide').eq(slideNo).css('display','block');  // 해당번호 슬라이드 보이기
+        
+        // 모든 서클버튼 초기화(투명, 작게)
+        $('.circle').css('background','transparent');
+        $('.circle').css('transform','none')
+        
+        // 현재 서클버튼 흰색 배경
+        $('.circle').eq(slideNo).css('background','#fff');
+        $('.circle').eq(slideNo).css('transform','scale(1.5)')
+        
+        
+        // 모든 캡션 숨기기
+        $('.caption').hide();
+        $('.caption').eq(slideNo).css('display','block');
+        
+        
+    };  
+    // 슬라이드용 끝------------------------------------------------------
+    
+    
+    // 슬라이드 play
+    function playSlide(){
+        loop = setInterval('slide(1)',3000);
+    }
+    
+    
+    // 슬라이드 stop
+    function stopSlide(){
+        clearInterval(loop);
+    }
+    
+    
+    
+    $(function(){
+        
+        $('.left').click(function(){  // 이전버튼 클릭할 때
+            slide(-1);  // slide 함수 실행(-1을 전달해 슬라이드 번호를 감소)
+        });
+        
+        $('.right').click(function(){  // 다음버튼 클릭할 때
+            slide(1);  // slide 함수 실행(+1을 전달해 슬라이드 번호를 증가)
+        });
+        
+        // 서클버튼 클릭하면 해당 순번의 슬라이드로 맞추기
+        $('.circle').click(function(){
+            var no = $(this).index();  // 슬라이드 번호 맞추기
+            slideNo = no;  // 서클버튼의 순번과 슬라이드 번호 맞춤
+            slide(0);     // 슬라이드 실행하기
+         });
+            
+    });  // $(function)
+
+    
+</script>
+    
+
+</head>
+
+<body onLoad="playSlide()">
+    
+    <header id="header" onMouseOver="stopSlide()" onMouseOut="playSlide()">
+    
+        <img src="images/head_image1.jpg" alt="슬라이드1" class="slide" />
+        <img src="images/back2.jpg" alt="슬라이드1" class="slide" />
+        <img src="images/back1.jpg" alt="슬라이드1" class="slide" />
+        
+        <button class="button left">&lang;</button>
+        <button class="button right">&rang;</button>
+        
+    
+    
+    <div id="circlebox">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+        
+        
+    <div class="caption" style="display: block">First Slide</div>    
+    <div class="caption">Second Slide</div>    
+    <div class="caption">Third Slide</div>    
+        
+    </header>
+
+</body>
+</html>
