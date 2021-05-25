@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title> 반응형 슬라이드 - 페이드(이미지 변경)</title>
+
+<style>
+
+   @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+   *{ box-sizing:border-box; margin:0; outline:0 }
+
+   body {
+       font-family: 'Nanum Gothic', sans-serif;
+   }
+    
+
+    #header {
+        width:100%;
+        position:relative;
+    }
+    
+    .slide {  /* 각 슬라이드 이미지 */
+        position:absolute; top:0; left:0;  /* 각 이미지를 겹치게 배치 */
+        width:100%;
+        display: none;  /* 모든 이미지 숨기기 */
+    }
+    
+    .slide:first-child { display: block }  /* 첫번째 이미지만 보이게 */
+    
+    
+    .button {
+        position: absolute;
+        top:50%;
+        transform: translateY(-50%);
+        width:30px;
+        font-size: 3rem;
+        border:none;
+        border-radius: 20px;
+        color:#FFF;
+        font-weight: bold;
+        background:rgba(220,100,150,.5);
+        cursor: pointer;
+    }
+    
+    .left { left:10px }
+    .right { right:10px }
+    
+    
+    #circlebox {
+        position: absolute;
+        bottom:20px;
+        left:50%;
+        transform: translateX(-50%);
+        padding:5px;
+        display: flex;
+    }
+    
+    .circle { 
+        width:30px;
+        height: 30px;
+        border:1px solid #FFF;
+        border-radius: 50%;
+        margin: 3px;
+        cursor: pointer;
+    }
+    
+    .circle:first-child { background:#FFF }
+    
+    #pause {
+        width:30px;
+        height: 30px;
+        border-left:30px double red;
+        margin:3px 3px 3px 20px;     
+    }
+    
+    #play {
+        width:30px;
+        height: 30px;
+        border-left:30px solid #FFF;
+        border-top:15px solid transparent;
+        border-bottom:15px solid transparent;
+        margin: 3px 6px;
+    }
+    
+    #pause, #play {
+        transition:.3s; cursor: pointer;
+    }
+    
+    
+</style>
+    
+   
+    <!-- jQuery 라이브러리 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+    
+    
+<script>
+    
+    // 화면 폭에 따라 슬라이드 이미지 변경하기
+    function autoChange(){
+        if($(window).width() < 700 ){
+            $('.slide').eq(0).attr('src','images/mov1.jpg');
+            $('.slide').eq(1).attr('src','images/mov2.jpg');
+            $('.slide').eq(2).attr('src','images/mov3.jpg');
+            
+            
+            //  슬라이드 이미지의 세로폭으로 헤더의 세로폭 맞추기
+            var h = $('.slide').width() * (800/600);  // 이미지 크기 800*600 기준
+            $('#header').height(h);  // 헤더의 높이 변경하기            
+        }
+        else {
+            $('.slide').eq(0).attr('src','images/pcv1.jpg');
+            $('.slide').eq(1).attr('src','images/pcv2.jpg');
+            $('.slide').eq(2).attr('src','images/pcv3.jpg');
+            
+            //  슬라이드 이미지의 세로폭으로 헤더의 세로폭 맞추기
+            var h = $('.slide').width() * (600/1200);  // 이미지 크기 1200*600 기준
+            $('#header').height(h);  // 헤더의 높이 변경하기
+        }
+        
+    }
+    
+    // 창 열릴때, 창크기 조절할때 autoChange 실행하기
+    $(document).ready(autoChange);
+    $(window).resize(autoChange);
+    
+    // 화면 폭에 따라 슬라이드 이미지 변경하기 end-------------------------------
+    
+    
+    //  헤더 슬라이드 시작 -----------------------------------
+    var slideNo = 0;
+    var loop;
+    
+    function slide(no) {
+        slideNo += no;
+        
+        if(slideNo>2) slideNo=0;
+        if(slideNo<0) slideNo=2;
+        
+        // 모든 슬라이드 안보이게, 해당 슬라이드만 보이게
+        $('.slide').fadeOut(600);
+        $('.slide').eq(slideNo).fadeIn(600);   
+        
+        // 모든 서클버튼 투명 배경, 현재 서클버튼만 흰색 배경
+        $('.circle').css('background','transparent')
+        $('.circle').eq(slideNo).css('background','#FFF');
+        
+    
+    }
+    
+    function playSlide(){
+        loop = setInterval('slide(1)',3000);
+    }
+    
+    function stopSlide(){
+        clearInterval(loop);
+    }
+    
+    
+    //  헤더 슬라이드 시작 끝 -----------------------------------
+    
+    
+    $(function(){
+        
+        $('.left').click(function(){  // 이전버튼 클릭할 때
+            slide(-1);  // slide 함수 실행(-1을 전달해 슬라이드 번호를 감소)
+        });
+        
+        $('.right').click(function(){  // 다음버튼 클릭할 때
+            slide(1);  // slide 함수 실행(+1을 전달해 슬라이드 번호를 증가)
+        });
+        
+        // 서클버튼 클릭하면 해당 순번의 슬라이드로 맞추기
+        $('.circle').click(function(){
+            var no = $(this).index();  // 슬라이드 번호 맞추기
+            slideNo = no;  // 서클버튼의 순번과 슬라이드 번호 맞춤
+            slide(0);     // 슬라이드 실행하기
+         });
+        
+        // 멈춤버튼 클릭하면 슬라이드 멈춤
+        $('#pause').click(function(){
+            stopSlide();
+        });
+        
+        // 플레이 버튼 클릭하면 슬라이드 시작
+        $('#play').click(function(){
+            playSlide();
+        });
+            
+    });  // $(function)
+
+        
+    
+    $(function(){
+    
+        
+        
+    });  // $(function)
+
+    
+</script>
+    
+
+</head>
+
+<body onLoad="playSlide()">
+    
+    <header id="header">
+    
+        <img src="images/mov1.jpg" alt="슬라이드1" class="slide" />
+        <img src="images/mov2.jpg" alt="슬라이드1" class="slide" />
+        <img src="images/mov3.jpg" alt="슬라이드1" class="slide" />
+        
+        <button class="button left">&lang;</button>
+        <button class="button right">&rang;</button>
+        
+    
+    
+    <div id="circlebox">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div id="pause"></div>
+        <div id="play"></div>
+    </div>
+
+        
+        
+        
+    </header>
+
+</body>
+</html>
