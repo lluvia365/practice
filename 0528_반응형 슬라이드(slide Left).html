@@ -17,21 +17,219 @@
        font-family: 'Nanum Gothic', sans-serif;
    }
 
+    
+    #header {
+        width:100%;
+/*        max-width: 1200px;*/
+        /* 가로폭이 반응형일때 자동높이 조절위해 높이는 정하지 않음*/
+        position: relative; /* 버튼, 캡션위치 조절용 */
+        /* 슬라이드위치용 fadein/out 외에는 position주지말고 margin으로 위치조절 */
+        overflow: hidden;
+    }
+    
+    #slideBox { /* 3장 이미지 슬라이드 박스 */
+        width:300%; /* 100%*3장 */
+        display: flex; /* 이미지 가로배치용 */
+        transition:.5s;
+    }
+
+    .slide {
+        width:33.3333%; /* 이미지가 3장이라 3등분 */
+        display: block; /* 이미지사이 틈 없애는 용도 */
+    }
+    
+    #timerBox {  /* 슬라이드 진행율 막대 */
+        position: absolute; left:20px; bottom: 20px;
+        width:100px; height: 20px;
+        padding:5px;
+        background:rgba(255,255,255,.3);
+    }
+    
+    #timer {  /* 진행율 표시용 막대 */
+        width:100%; height: 100%;
+        background:rgba(255,255,255,.6);
+    }
+    
+    .timer { animation: timer 3s linear }  /* linear - 똑같은 속도로 */
+    
+    .caption {
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        color:#FFF;
+        text-align: center;
+        font-size: 3rem;
+        display: none;
+    }
+    
+    /* 자동 줄바꿈 방지 */
+    .cap1, .cap2 { white-space: nowrap }
+    
+    .cap1 { animation:left .5s .5s both }
+    
+    /* animation: 이름. play시간, 대기시간*/    
+    .cap2 { font-size:2.5rem; animation:right .5s .7s both }
+    
+    
+    .button {
+        position: absolute;
+        top:50%;
+        transform: translateY(-50%);
+        width:30px;
+        font-size: 3rem;
+        text-align: center;
+        border:none;
+        border-radius: 20px;
+        color:#FFF;
+        font-weight: bold;
+        background:rgba(220,100,150,.5);
+        cursor: pointer;
+    }
+    
+    .left { left:10px }
+    .right { right:10px }
+    
+    
+    
+    @keyframes timer {  /* 타이머박스 애니메이션 */
+        from { width:0 }
+        to { width:100% }
+    }
+    
+    @keyframes left {  /* 캡션문자 */
+        from { transform: translateX(-20%); opacity: 0 }
+        to { transform: translateX(0); opacity: 1 }
+    }
+    
+    @keyframes right {  /* 캡션문자 */
+        from { transform: translateX(20%); opacity: 0 }
+        to { transform: translateX(0); opacity: 1 }        
+    }
+    
+    
 
 </style>
+    
+    <!-- jQuery 라이브러리 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+    
+<script>
+
+    var slideNo = 0;
+    var loop;
+    
+    function slide(no) {
+        slideNo += no;
+        
+        if(slideNo>2) slideNo=0;
+        if(slideNo<0) slideNo=2;
+        
+        // 슬라이드 이동 위치 계산(슬라이드 폭 만큼)
+        var x = -($('.slide').width() * slideNo) + 'px';
+       //  var x = slideNo * -100 +'%'
+        
+        // 슬라이드 이동
+        $('#slideBox').css('margin-left',x);
+
+        // 진행율 애니메이션 재시작
+        $('#timer').removeClass('timer');  // 1.애니메이션 제거
+        setTimeout(function(){  // 2. 1초후 애니메이션(.timer) 실행
+            $('#timer').addClass('timer') 
+        },1);
+        
+        // 모든 캡션 문자 숨기기
+        $('.caption').hide();
+        // 해당 캡션 문자 보이기
+        $('.caption').eq(slideNo).show();
+        
+    }
+    
+    // 슬라이드 실행
+    function playSlide(){
+        loop = setInterval('slide(1)',3000);  // 슬라이드 진행
+        
+        // 진행율 애니메이션 실행
+        $('#timer').css('animation-paly-state','running');
+    }
+    
+    
+    // 슬라이드 정지 
+    function stopSlide(){
+        clearInterval(loop);  // 슬라이드 정지
+        
+        // 진행율 애니메이션 정지
+        $('#timer').css('animation-paly-state','paused');
+    }
+    
+    
+    $(function(){  // 페이지 열릴 때 
+
+        // 진행율 애니메이션 동작
+        $('#timer').addClass('timer');
+        
+        
+        
+        
+    });  //$(function()
+    
+
+        
+    // 화면 해상도별 슬라이드 이미지 변경
+    function autoChange(){
+        if($(window).width() < 700) {  // 화면폭이 700미만일 때
+            $('.slide').eq(0).attr('src','images2/Image01_2.jpg');
+            $('.slide').eq(1).attr('src','images2/Image02_2.jpg');
+            $('.slide').eq(2).attr('src','images2/Image03_2.jpg');
+        }
+        else {  // 그렇지 않으면(700이상일 때)
+            $('.slide').eq(0).attr('src','images2/Image01.jpg');
+            $('.slide').eq(1).attr('src','images2/Image02.jpg');
+            $('.slide').eq(2).attr('src','images2/Image03.jpg');            
+        }
+    }
+    
+    $(document).ready(autoChange());
+    $(window).resize(autoChange);
+    
+    
+    
+</script>    
 
 </head>
 
-<body>
+<body onLoad="playSlide()">
     
-<header id="header">
+<header id="header" onMouseOver="stopSlide()" onMouseOut="playSlide()">
 
     <div id="slideBox">
         <img src="images2/Image01.jpg" class="slide" />
         <img src="images2/Image02.jpg" class="slide" />
-        <img src="images2/Image03.jpg" class="slide" />
-
+        <img src="images2/Image03.jpg" class="slide" />      
+    </div>  <!-- #slideBox -->
+    
+    <div class="button left">&lang;</div>
+    <div class="button right">&rang;</div>
+    
+    <div id="timerBox">  <!-- 슬라이드 진행율 막대 -->
+        <div id="timer"></div>  <!-- 진행율 표시용 막대 -->
+    </div>  <!-- #timerBox -->
+    
+    <div class="caption" style="display: block">
+        <h1 class="cap1">GALLERY 1</h1>
+        <h2 class="cap2">Beautiful Life</h2>
     </div>
+    
+    <div class="caption" >
+        <h1 class="cap1">GALLERY 2</h1>
+        <h2 class="cap2">Beautiful Life</h2>
+    </div>
+    
+    <div class="caption" >
+        <h1 class="cap1">GALLERY 3</h1>
+        <h2 class="cap2">Beautiful Life</h2>
+    </div>
+
     
 </header>    
 
