@@ -169,6 +169,14 @@
         $('#timer').addClass('timer');
         
         
+       $('.left').click(function(){  // 이전버튼 클릭할 때
+            slide(-1);  // slide 함수 실행(-1을 전달해 슬라이드 번호를 감소)
+        });
+        
+        $('.right').click(function(){  // 다음버튼 클릭할 때
+            slide(1);  // slide 함수 실행(+1을 전달해 슬라이드 번호를 증가)
+        });
+                
         
         
     });  //$(function()
@@ -230,6 +238,16 @@
         <h2 class="cap2">Beautiful Life</h2>
     </div>
 
+    
+    <div id="circlebox">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div id="pause"></div>
+        <div id="play"></div>
+    </div>
+
+    
     
 </header>    
 
