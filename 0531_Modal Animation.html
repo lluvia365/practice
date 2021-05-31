@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title> Modal Animation </title>
+
+<style>
+
+   @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+   *{ box-sizing:border-box; margin:0; outline:0 }
+
+   body {
+       font-family: 'Nanum Gothic', sans-serif;
+   }
+    
+    
+    #listBox {
+        list-style: none; padding:0;
+        width:100%; max-width: 1000px;
+        margin:auto;
+        display: flex;
+    }
+
+    .list {
+        width:calc((100% -40px) / 5);
+        margin-right: 10px;
+        cursor: pointer;
+        position: relative;  /* 캡션박스 위치용 */
+        border:1px solid #333;
+    }
+    
+    .list:last-child { margin-right: 0 }
+    
+    .thumb {
+        display: block; width:100%;
+    }
+    
+    .thumb:hover {
+        transition:.3s;
+        opacity: .7;
+    }
+    
+    .caption {
+        position: absolute;
+        top:120%;
+        left:50%; transform: translateX(-50%);  /* 위치조절용 */
+        background:#022e57; color:#FFF;
+        padding:5px 10px;
+        font-size: 1.1rem;
+        white-space: nowrap;
+        border-radius: 20px;
+        display: none;
+        opacity: 0;
+    }
+    
+    .caption:after {  /* 캡션박스위 삼각형 */
+        content:"";  /* 내용(글씨) 없으면 빈공간으로 */
+        position: absolute;
+        top:-7px; left:50%;
+        transform: translateX(-50%);
+        border-bottom: 7px solid #022e57;
+        border-left:7px solid transparent;
+        border-right:7px solid transparent;
+    }
+    
+    #modal {
+        position: fixed;
+        top:0; left:0;
+        width:100%; height: 100%;
+        background:rgba(0,0,0,.5);
+        display: none;
+    }
+    
+    #modalContents {
+        position: fixed;
+        top:-150%; left:50%;        
+        transform: translate(-50%,-50%);
+        width:100%; max-width: 600px;
+    }
+    
+    #modalImage {
+        width:100%; display: block;
+    }
+    
+    #modalClose {
+        position: absolute;
+        top:10px; right: 10px;
+        font-size: 1.5rem;
+        color:red;
+        cursor: pointer;
+    }
+    
+    
+    
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+
+	$(function(){  // 페이지 열릴 때 
+
+		$('.list').on({  // 마우스가 닿으면 
+            mouseenter:function(){
+                $(this).children('.caption').show();  // 캡션 보이게
+                $(this).children('.caption').animate({  // 캡션의 애니메이션
+                    'top':'105%','opacity':'1'
+                },300);  // 0.3초동안
+            },  // ; 쓰지않음
+            
+            mouseleave:function(){
+                // 아래로 점점 사라지는 애니메이션
+                $(this).children('.caption').animate({  
+                    'top':'120%','opacity':'0'
+                },300);  // 0.3초동안
+                
+                // 애니메이션 끝난 후 화면에서 완전히 제거
+                $(this).children('.caption').delay(300).fadeOut;
+            },  // ; 쓰지않음
+            
+            click:function(){
+                var no = $(this).index() + 1;
+                var name = "images/Image0"+no+".jpg";  // 변경할 파일이름
+                $('#modalImage').attr('src',name);  // 모달이미지의 src이름변경
+
+                $('#modal').fadeIn();  // 마우스가 닿으면
+                // 0.2초후 0.3초동안 사진이 50%내려가는 애니메이션 실행
+                $('#modalContents').delay(200).animate({'top':'50%'},300)
+            }            
+            
+        });  //$('.list').on()
+        
+        
+        $('#modalClose').click(function(){
+            $('#modalContents').animate({'top':'-150%'},300)
+            $('#modal').delay(200).fadeOut();
+       });  //$('#modalClose').click()
+        
+
+	});  //$(function()
+
+
+</script>
+
+</head>
+
+
+<body>
+
+    <ul id="listBox">
+        
+        <li class="list">
+            <img src="images/Image01_small.jpg" class="thumb" />
+            <div class="caption">Image List</div>
+        </li>
+                
+        <li class="list">
+            <img src="images/Image02_small.jpg" class="thumb" />
+            <div class="caption">Image List</div>
+        </li>
+                
+        <li class="list">
+            <img src="images/Image03_small.jpg" class="thumb" />
+            <div class="caption">Image List</div>
+        </li>
+                
+        <li class="list">
+            <img src="images/Image04_small.jpg" class="thumb" />
+            <div class="caption">Image List</div>
+        </li>
+                
+        <li class="list">
+            <img src="images/Image05_small.jpg" class="thumb" />
+            <div class="caption">Image List</div>
+        </li>
+        
+    </ul>
+    
+    
+    <div id="modal">
+        
+        <div id="modalContents">
+            <img src="images/Image01.jpg" id="modalImage" />
+            <button id="modalClose">&times;</button>
+        </div>
+    
+    </div>
+
+</body>
+</html>
