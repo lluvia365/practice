@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title> jQuery-AnimateContents </title>
+
+<style>
+
+   @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+   *{ box-sizing:border-box; margin:0; outline:0 }
+
+   body {
+       font-family: 'Nanum Gothic', sans-serif;
+   }
+    
+    
+    #btn {
+        border:none;
+        background:#FF96AD;
+        color:#FFF;
+        font-size: 1.5rem;
+        padding:5px;
+        cursor: pointer;
+    }
+    
+    #contents {
+        position:absolute; /* 상위요소:body */
+        width:200px; height: 0;
+        background:#AAA;
+        position: relative;
+    }
+    
+    #image { display: none }
+    
+    #close {
+        position: absolute;
+        top:20px; right:10px;
+        border:none;
+        background:#FFF;
+        font-size: 2rem;
+        display: none;
+        cursor: pointer;
+    }
+
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+
+	$(function(){  // 페이지 열릴 때 
+
+		$('#btn').click(function(){
+            // contents 박스 커지는 애니메이션
+            $('#contents').animate({'height':'500px'}); // 기본값 0.4초걸림
+            $('#contents').animate({'width':'600px'});  // 기본갑 0.4초걸림
+            
+        // 박스 등장 후 이미지 등장
+        $('#image,#close').delay(800).fadeIn();  // 0.8초 지연시켰다가 이미지보임            
+        });
+        
+        $('#close').click(function(){  // 닫기버튼 누르면
+            $('#image,#close').fadeOut();  // 이미지, 닫기버튼 숨김
+            
+            // 컨턴츠박스 4초후(기본값) 초기사이즈로 변경(사라짐)
+            $('#contents').delay(400).animate({'width':'200'});
+            $('#contents').animate({'height':'0'});
+        });
+
+	});  //$(function()
+
+
+</script>
+
+</head>
+
+
+<body>
+
+    <button id="btn">View Contents</button>
+
+    <div id="contents">
+        <img src="images/Image05.jpg" id="image">
+        <button id="close">&times;</button>
+    </div>
+    
+    
+</body>
+</html>
