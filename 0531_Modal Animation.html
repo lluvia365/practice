@@ -31,6 +31,8 @@
         cursor: pointer;
         position: relative;  /* 캡션박스 위치용 */
         border:1px solid #333;
+        border-radius: 10px;
+        overflow: hidden;
     }
     
     .list:last-child { margin-right: 0 }
@@ -138,7 +140,7 @@
         $('#modalClose').click(function(){
             // 0.3초동안 사진이 위로 올라가는 애니메이션 실행
             $('#modalContents').animate({'top':'-150%'},300)
-            // 0.2초후 사라
+            // 0.2초후 사라짐
             $('#modal').delay(200).fadeOut();
        });  //$('#modalClose').click()
         
