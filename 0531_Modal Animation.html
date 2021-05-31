@@ -134,9 +134,11 @@
             
         });  //$('.list').on()
         
-        
+        // 모달창 닫기버튼 클릭하면
         $('#modalClose').click(function(){
+            // 0.3초동안 사진이 위로 올라가는 애니메이션 실행
             $('#modalContents').animate({'top':'-150%'},300)
+            // 0.2초후 사라
             $('#modal').delay(200).fadeOut();
        });  //$('#modalClose').click()
         
