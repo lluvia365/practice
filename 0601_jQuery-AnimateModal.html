@@ -57,7 +57,8 @@
     
     #modalContents {
         position: absolute;
-        top:50%; left:50%;
+        top:100%; left:50%;
+        opacity: 0;
         transform: translate(-50%,-50%);
         
         width:95%; max-width: 700px;
@@ -89,6 +90,7 @@
         font-size: 2.5rem;
         color:rgba(255,255,255,.8);
         cursor: pointer;
+        opacity: 0;
     }
     
     .left { left:-40px}
@@ -117,7 +119,7 @@
     var caption = [ "Gallery no 1","Gallery no 2","Gallery no 3","Gallery no 4","Gallery no 5","Gallery no 6" ];
     
     // 모달창에 보여질 큰 이미지 파일 이름
-    var name = [ "Image01.jpg","Image02.jpg","Image03.jpg","Image04.jpg","Image05.jpg","Image06.jpg" ];
+    var names = [ "Image01.jpg","Image02.jpg","Image03.jpg","Image04.jpg","Image05.jpg","Image06.jpg" ];
     
     
     // 모달창 번호용
@@ -128,10 +130,10 @@
         
         if(modalNo>5) modalNo=0;
         if(modalNo<0) modalNo=5;
-        console.log(modalNo)
+//        console.log(modalNo)
         
         var text = caption[modalNo];
-        var fileName = 'images/' + name[modalNo];
+        var fileName = 'images/' + names[modalNo];
         
         $('#modalTitle').html(text);
         $('#modalImage').attr('src',fileName);
@@ -143,10 +145,32 @@
     
 	$(function(){  // 페이지 열릴 때 
 
-        $('.thumb').click(function(){
+        $('.thumb').click(function(){  // 썸네일을 누르면
+            
+            $('#modalContents').animate({'top':'45%', 'opacity':'1'},300);
+            $('#modalContents').animate({'top':'50%', 'opacity':'1'},100);
+            
+            // 모달컨텐츠 등장후 모달버튼 4초후에 등장
+            $('.modalButton').delay(400).animate({'opacity':'1'},500);
+            
+            
             modalNo = $(this).parent().index();  // 클릭한 섬네일 순번
             modal(0)
-        })
+        });  //$('.thumb').click()
+        
+        
+        $('.left').click(function(){
+            modal(-1);
+        });
+              
+        $('.right').click(function(){
+            modal(1);
+        });
+        
+        
+        $('#modalClose').click(function(){
+            $('#modal').fadeOut(300);
+        });
 
 	});  //$(function()
 
