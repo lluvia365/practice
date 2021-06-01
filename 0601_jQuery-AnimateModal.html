@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title> jQuery-AnimateModal </title>
+
+<style>
+
+   @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+   *{ box-sizing:border-box; margin:0; outline:0 }
+
+   body { font-family: 'Nanum Gothic', sans-serif }
+    
+    
+    #listBox {
+        list-style: none; padding:0;
+        width:95%; max-width: 1200px;
+        display: flex; flex-wrap: wrap;
+        margin: 50px auto;
+    }
+    
+    .list {
+        width: calc((100% - 40px) / 3);
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .list:nth-child(3n) { margin-right: 0 }
+    
+    .thumb {
+        width:100%;
+        display: block;
+        border:5px solid white;
+        border-radius:10px;
+        box-shadow:0 0 5px rgba(0,0,0,.5);
+        transition:.3s;
+        cursor: pointer;
+    }
+    
+    .thumb:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 10px rgba(0,0,0,.5); 
+    }
+    
+    
+    #modal {
+        position:fixed; 
+        top:0; left:0;
+        width:100%; height: 100%;
+        background:rgba(0,0,0,.5);
+    }
+    
+    #modalContents {
+        position: absolute;
+        top:50%; left:50%;
+        transform: translate(-50%,-50%);
+    }
+    
+    #modalTitle {  }
+    
+    #modalImage {
+        
+    }
+    
+    #modalClose {
+        
+    }
+    
+    .modalButton {
+        
+    }
+    
+    .left {}
+    .right {}
+    
+    
+    
+    @media screen and (max-width:700px){
+        .list { width:calc((100% - 20px) / 2) }
+        
+        .list:nth-child(3n) { margin-right: 20px }
+        .list:nth-child(2n) { margin-right: 0px }
+    }
+    
+    
+    
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    
+    // 모달창에 보여질 제목 문자
+    var caption = [ "Gallery no 1","Gallery no 2","Gallery no 3","Gallery no 4","Gallery no 5","Gallery no 6" ];
+    
+    // 모달창에 보여질 큰 이미지 파일 이름
+    var name = [ "Image01.jpg","Image02.jpg","Image03.jpg","Image04.jpg","Image05.jpg","Image06.jpg" ];
+    
+    
+
+	$(function(){  // 페이지 열릴 때 
+
+		
+
+	});  //$(function()
+
+
+</script>
+
+</head>
+
+
+<body>
+
+    <ul id="listBox">
+        
+        <li class="list">
+            <img src="images/Image01_small.jpg" class="thumb" />
+        </li>
+               
+        <li class="list">
+            <img src="images/Image02_small.jpg" class="thumb" />
+        </li>
+               
+        <li class="list">
+            <img src="images/Image03_small.jpg" class="thumb" />
+        </li>
+               
+        <li class="list">
+            <img src="images/Image04_small.jpg" class="thumb" />
+        </li>
+               
+        <li class="list">
+            <img src="images/Image05_small.jpg" class="thumb" />
+        </li>
+               
+        <li class="list">
+            <img src="images/Image06_small.jpg" class="thumb" />
+        </li>
+        
+    </ul>
+    
+    
+    
+    <div id="modal">
+        
+        <div id="modalContents">
+            <h2 id="modalTitle">Gallery No1</h2>
+            <img id="modalImage" src="images/Image01.jpg" />
+            
+            <button id="modalClose">&times;</button>
+            
+            <button class="modalButton left">&lang;</button>
+            <button class="modalButton right">&rang;</button>
+            
+        </div>
+        
+    </div>
+
+    
+</body>
+</html>
