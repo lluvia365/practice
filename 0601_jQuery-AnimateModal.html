@@ -52,6 +52,7 @@
         top:0; left:0;
         width:100%; height: 100%;
         background:rgba(0,0,0,.5);
+        display: none;
     }
     
     #modalContents {
@@ -95,6 +96,8 @@
     
     
     
+    
+    
     @media screen and (max-width:700px){
         .list { width:calc((100% - 20px) / 2) }
         
@@ -117,10 +120,33 @@
     var name = [ "Image01.jpg","Image02.jpg","Image03.jpg","Image04.jpg","Image05.jpg","Image06.jpg" ];
     
     
+    // 모달창 번호용
+    var modalNo;  /* 클릭하는 순서가 정해지지 않아 번호지정 안함 */
+    
+    function modal(no){
+        modalNo += no;
+        
+        if(modalNo>5) modalNo=0;
+        if(modalNo<0) modalNo=5;
+        console.log(modalNo)
+        
+        var text = caption[modalNo];
+        var fileName = 'images/' + name[modalNo];
+        
+        $('#modalTitle').html(text);
+        $('#modalImage').attr('src',fileName);
+        
+        $('#modal').fadeIn(500);
+    }
+    
 
+    
 	$(function(){  // 페이지 열릴 때 
 
-		
+        $('.thumb').click(function(){
+            modalNo = $(this).parent().index();  // 클릭한 섬네일 순번
+            modal(0)
+        })
 
 	});  //$(function()
 
