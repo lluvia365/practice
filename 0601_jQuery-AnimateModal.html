@@ -105,6 +105,10 @@
         
         .list:nth-child(3n) { margin-right: 20px }
         .list:nth-child(2n) { margin-right: 0px }
+        
+        .left { left:30px; color:red }
+        .right { right:30px; color:red }
+        
     }
     
     
@@ -135,13 +139,21 @@
         var text = caption[modalNo];
         var fileName = 'images/' + names[modalNo];
         
+        // 텍스트 변경용
         $('#modalTitle').html(text);
+        // 이미지 변경용
         $('#modalImage').attr('src',fileName);
         
+        // 좌우버튼 누를때 이미지 사라졌다 나오게
+        $('#modalImage').css('opacity','0');
+        $('#modalImage').animate({'opacity':'1'},500);
+        
+        // 모달창 서서히 보이게
         $('#modal').fadeIn(500);
     }
     
-
+    
+    
     
 	$(function(){  // 페이지 열릴 때 
 
