@@ -16,13 +16,54 @@
    body {
        font-family: 'Nanum Gothic', sans-serif;
    }
-
+    
+    
+    #header {
+        width:100%; max-width: 300px;
+        margin: auto;
+        border:3px solid red;
+    }
+    
+    #slideBox {
+        width:300%; /* 전체박스 width값*3장*/
+        display: flex;
+    }
+    
+    .slide {
+        width:33.3333%;
+        display: block;
+    }
+    
+    
+    
+    
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
 
+    var slideNo = 0;
+    var loop;
+    
+    function slide(no){
+        slideNo += no;
+        if(slideNo>2)slideNo=0;
+        if(slideNo<0)slideNo=2;
+    }
+    
+    // 다음 버튼(오른쪽 버튼), 자동 재생용 (슬라이드를 왼쪽으로 이동)
+    function toLeft(){
+        // 1. 슬라이드 박스를 왼쪽으로 이동(한 장 폭만큼)
+        $('#slideBox').animate({'margin-left':'-100%'},500,function(){
+            // 2. 맨 앞의 슬라이드 이미지를 맨 뒤로 보내기
+            $('.slide:first').appendTo('#slideBox')
+        });
+        
+       
+    }
+    
+    
 	$(function(){  // 페이지 열릴 때 
 
 		
