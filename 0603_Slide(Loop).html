@@ -52,7 +52,7 @@
         if(slideNo<0)slideNo=2;
         
         toLeft();  // toLeft()함수 실행
-    }
+    };
     
     // 다음 버튼(오른쪽 버튼), 자동 재생용 (슬라이드를 왼쪽으로 이동)
     function toLeft(){
@@ -64,16 +64,38 @@
             $('#slideBox').css('margin-left','0');
         });
         
-    }
+    };
     
     
     function playSlide(){
         loop = setInterval('slide(1)',3000);
-    }
+    };
     
     function stopSlide(){
         clearInterval(loop);
-    }
+    };
+    
+    
+    // 해상도에 따라 슬라이드 이미지 바꾸기
+    function autoChange(){
+        if($(window).width() < 700) {
+            $('.slide').eq(0).attr('src','images2/back1-1.jpg');
+            $('.slide').eq(1).attr('src','images2/back2-1.jpg');
+            $('.slide').eq(2).attr('src','images2/back3-1.jpg');
+        }
+        
+        else {
+            $('.slide').eq(0).attr('src','images2/back1.jpg');
+            $('.slide').eq(1).attr('src','images2/back2.jpg');
+            $('.slide').eq(2).attr('src','images2/back3.jpg');                
+        };
+    };  // autoChange()
+    
+    
+    $(document).ready(autoChange);
+    $(window).resize(autoChange);
+    
+    
     
 	$(function(){  // 페이지 열릴 때 
 
