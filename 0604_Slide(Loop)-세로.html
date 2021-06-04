@@ -32,18 +32,86 @@
         display: block;
     }
     
+    .button {
+        position: absolute;
+        left:50%;
+        transform: translateX(-50%) rotate(90deg);
+        color:purple;
+        background:none;
+        border:none;
+        font-size: 3rem;
+        cursor: pointer;
+    }
+    
+    .button:hover { color:#FFF }
+    
+    .up { top:10px }
+    .down { bottom: 10px }
+    
+    
     
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
+    
+    var slideNo=0;
+    var loop;
+    
+    // 슬라이드 메인 함수
+    function slide(no){
+        slideNo += no;
+        
+        if(slideNo > 2) slideNo=0;
+        if(slideNo < 0) slideNo=2;
+        
+        if(no==1)  // 다음버튼을 클릭할 때, 페이지가 열릴 때
+            toUp();  // 슬라이드를 위로 이동
+        else
+            toDown();  // 슬라이드를 아래로 이동
+        
+    };  // slide(no)
+    
+    
+    // 슬라이드를 위로 이동하는 함수(다음버튼용)
+    function toUp(){
+        // 1. 슬라이드 박스를 위로 이동(헤더 세로폭 만)
+        $('#slideBox').stop().animate({'margin-top':'-100%'},1000,function(){
+            $('.slide:first').appendTo('#slideBox');
+            $('#slideBox').css('margin-top','0');
+        });
+    };
+      
+    // 슬라이드를 아래로 이동하는 함수(이전버튼용)
+    function toDown(){
+        $('.slide:last').prependTo('#slideBox');
+        $('#slideBox').css('margin-top','-100%');
+        $('#slideBox').stop().animate({'margin-top':'0'},1000);
+        });
+    };
+    
+    
+    
 
 	$(function(){  // 페이지 열릴 때 
 
 		
 
 	});  //$(function()
+    
+    
+    // 헤더 높이 자동 계산(슬라이드 1장의 높이로 맞추기)
+    function autoHeight(){
+        var h = $('.slide').height();  // 슬라이드 이미지의 세로폭
+        $('#header').height(h);       // 헤더의 높이 슬라이드이미지높이로 바꾸기
+    }
+    
+    
+    // 페이지가 열릴때, 창크기 조절할때 헤더높이 자동 계산 실행
+    $(document).ready(autoHeight);
+    $(window).resize(autoHeight);
+    
 
 
 </script>
@@ -60,6 +128,10 @@
             <img src="images2/Image03.jpg" class="slide" />
             <img src="images2/Image04.jpg" class="slide" />
         </div>
+        
+        <button class="button up">&lang;</button>
+        <button class="button down">&rang;</button>
+        
     </header>
 
 </body>
