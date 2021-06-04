@@ -49,20 +49,27 @@
     var slideNo=0;
     var loop;
     
-    
+    // 슬라이드 메인 스크립트
     function slide(no){
         slideNo += no;
         
         if(slideNo > 2) slideNo=0;
         if(slideNo < 0) slideNo=2;
+        
+        toLeft();  // 왼쪽으로 이동하는 함수 실행
     };  // 슬라이드 메인 스크립트 slide(no)
     
     
     // 슬라이드를 왼쪽으로 이동하는 함수(다음 버튼용)
     function toLeft(){
         // 1. 슬라이드 박스를 왼쪽으로 이동(헤더 폭만큼)
-        $('#slideBox').stop().animate({'margin-left':'-100%'},1000);
-        // 2. 
+        $('#slideBox').stop().animate({'margin-left':'-100%'},1000,function(){
+            // 2. 첫 번째 슬라이드를 슬라이드 박스 맨 뒤로 보내기
+            $('.slide:first').appendTo('#slideBox');
+            // 3. 슬라이드 박스를 원래 위치로 맞춤
+            $('#slideBox').css('margin-left','0');
+        });
+        
     };
     
     
@@ -90,7 +97,7 @@
 </head>
 
 
-<body>
+<body onLoad="playSlide()" onMouseOver="stopSlide">
     
     <header id="header">
     
