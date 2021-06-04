@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title> Slide(Loop) </title>
+
+<style>
+
+   @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+   *{ box-sizing:border-box; margin:0; outline:0 }
+
+   body {
+       font-family: 'Nanum Gothic', sans-serif;
+   }
+    
+    
+    #header {
+        width:100%; 
+        position:relative;
+        
+        
+        max-width: 400px;
+        border:1px solid red;
+        margin: auto;
+    }
+    
+    #slideBox {  /* 전체 슬라이드 박스 */
+        width:300%;  /* 슬라이드 3개 */
+        display: flex;  /* 슬라이드 가로 배치 */
+    }
+    
+    .slide {  /* 각 슬라이드 이미지 */
+        display: block;
+        width:33.3333%;  /* 슬라이드 박스에 3등분 크기 */
+    }
+
+    
+    
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    
+    var slideNo=0;
+    var loop;
+    
+    
+    function slide(no){
+        slideNo += no;
+        
+        if(slideNo > 2) slideNo=0;
+        if(slideNo < 0) slideNo=2;
+    }
+    
+
+	$(function(){  // 페이지 열릴 때 
+
+		
+
+	});  //$(function()
+
+
+</script>
+
+</head>
+
+
+<body>
+    
+    <header id="header">
+    
+        <div id="slideBox">
+            <img src="images2/back1.jpg" class="slide" />
+            <img src="images2/back2.jpg" class="slide" />
+            <img src="images2/back3.jpg" class="slide" />
+        </div>
+    </header>
+
+
+
+</body>
+</html>
