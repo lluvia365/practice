@@ -21,6 +21,7 @@
     #header {
         width:100%;
         position: relative;
+        overflow: hidden;
     }
     
     #slideBox {
@@ -36,20 +37,19 @@
         position: absolute;
         left:50%;
         transform: translateX(-50%) rotate(90deg);
-        color:purple;
+        color:#FFF;
         background:none;
         border:none;
         font-size: 3rem;
         cursor: pointer;
     }
     
-    .button:hover { color:#FFF }
+    .button:hover { color:red }
     
     .up { top:10px }
     .down { bottom: 10px }
     
-    
-    
+
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -156,6 +156,8 @@
         
         <button class="button up">&lang;</button>
         <button class="button down">&rang;</button>
+        
+        
         
     </header>
 
