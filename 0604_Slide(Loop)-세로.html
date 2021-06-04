@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title> Slide(Loop)-세로 </title>
+
+<style>
+
+   @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+   *{ box-sizing:border-box; margin:0; outline:0 }
+
+   body {
+       font-family: 'Nanum Gothic', sans-serif;
+   }
+
+    
+    #header {
+        width:100%;
+        position: relative;
+    }
+    
+    #slideBox {
+        width:100%;
+    }
+    
+    .slide {
+        width:100%;
+        display: block;
+    }
+    
+    
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+
+	$(function(){  // 페이지 열릴 때 
+
+		
+
+	});  //$(function()
+
+
+</script>
+
+</head>
+
+
+<body onLoad="playSlide()">
+
+    <header id="header" onMouseOver="stopSlide()" onMouseOut="playSlide()">
+    
+        <div id="slideBox">
+            <img src="images2/Image02.jpg" class="slide" />
+            <img src="images2/Image03.jpg" class="slide" />
+            <img src="images2/Image04.jpg" class="slide" />
+        </div>
+    </header>
+
+</body>
+</html>
