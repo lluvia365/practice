@@ -21,11 +21,7 @@
     #header {
         width:100%; 
         position:relative;
-        
-        
-        max-width: 400px;
-        border:1px solid red;
-        margin: auto;
+        overflow: hidden;
     }
     
     #slideBox {  /* 전체 슬라이드 박스 */
@@ -37,7 +33,44 @@
         display: block;
         width:33.3333%;  /* 슬라이드 박스에 3등분 크기 */
     }
-
+    
+    
+    .button {
+        position: absolute;
+        top:50%;
+        transform: translateY(-50%);
+        width:30px;
+        line-height: 40px;
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        color:yellow;
+        border:none;
+        background:none;
+        cursor: pointer;
+    }
+    
+    .left { left:10px }
+    .right { right:10px }
+    
+    
+    #circleBox {
+        position: absolute;
+        bottom: 10px;
+        width:100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .circle { 
+        width:10px; height: 10px;
+        border:1px solid #FFF;
+        margin:2px;
+        transition:.5s;
+        cursor: pointer;
+    }
+    
+    .circle:first-child { background:#FFF }
     
     
 </style>
@@ -56,7 +89,12 @@
         if(slideNo > 2) slideNo=0;
         if(slideNo < 0) slideNo=2;
         
-        toLeft();  // 왼쪽으로 이동하는 함수 실행
+        
+        if(no==1)  // 다음 버튼을 클릭했을 때
+            toLeft();  // 왼쪽으로 이동하는 함수 실행
+        else
+            toRight();  // 오른쪽으로 이동하는 함수 실행
+        
     };  // 슬라이드 메인 스크립트 slide(no)
     
     
@@ -73,6 +111,17 @@
     };
     
     
+    // 슬라이드를 오른쪽으로 이동하는 함수 (이전 버튼용)
+    function toRight(){
+        //1. 마지막 슬라이드를 박스의 맨 앞으로 가져오기
+        $('.slide:last').prependTo('#slideBox');
+        // 2. 슬라이드 박스를 왼쪽으로 이동(헤더 폭만큼)
+        $('#slideBox').css('margin-left','-100%');
+        // 3. 슬라이드 박스를 오른쪽으로 이동하는 애니메이션
+        $('#slideBox').stop().animate({'margin-left':'0'},1000);
+    };
+    
+    
     // 슬라이드 play
     function playSlide(){
         loop = setInterval('slide(1)',3000);  // 3초마다 slide() 함수 실행
@@ -86,9 +135,17 @@
     
 
 	$(function(){  // 페이지 열릴 때 
-
-		
-
+        
+		$('.left').click(function(){
+            slide(-1);   
+        });
+                
+		$('.right').click(function(){
+            slide(1);   
+        });
+        
+        
+        
 	});  //$(function()
 
 
@@ -97,15 +154,25 @@
 </head>
 
 
-<body onLoad="playSlide()" onMouseOver="stopSlide">
+<body onLoad="playSlide()">
     
-    <header id="header">
+    <header id="header" onMouseOver="stopSlide()" onMouseOut="playSlide()">
     
         <div id="slideBox">
             <img src="images2/back1.jpg" class="slide" />
             <img src="images2/back2.jpg" class="slide" />
             <img src="images2/back3.jpg" class="slide" />
         </div>
+        
+        <button class="button left">&lang;</button>
+        <button class="button right">&rang;</button>
+        
+        <div id="circleBox">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        
     </header>
 
 
