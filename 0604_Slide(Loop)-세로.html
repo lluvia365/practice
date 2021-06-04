@@ -78,6 +78,7 @@
     function toUp(){
         // 1. 슬라이드 박스를 위로 이동(헤더 세로폭 만큼)
         var h = $('.slide:first').height();  // 이동할 슬라이드 세로 폭 계산
+        
         $('#slideBox').stop().animate({'margin-top':-h},600,function(){
             // 2. 첫 번째 슬라이드를 박스 맨 뒤(아래)로 이동
             $('.slide:first').appendTo('#slideBox');
@@ -86,16 +87,19 @@
         });
     };  // toUp()
       
-//    // 슬라이드를 아래로 이동하는 함수(이전버튼용)
-//    function toDown(){
-//        // 1. 마지막 슬라이드를 박스의 맨 위로 가져오기
-//        $('.slide:last').prependTo('#slideBox');
-//        // 2. 슬라이드 박스를 위로 이동 (헤더 높이만큼)
-//        $('#slideBox').css('margin-top','-100%');
-//        // 3. 슬라이드 박스를 위로 이동하는 애니메이션
-//        $('#slideBox').stop().animate({'margin-top':'0'},600);
-//        });
-//    };
+    
+    // 슬라이드를 아래로 이동하는 함수(이전버튼용)
+    function toDown(){
+         var h = $('.slide:first').height();  // 이동할 슬라이드 세로 폭 계산
+        
+        // 1. 마지막 슬라이드를 박스의 맨 앞(위)으로 이동
+        $('.slide:last').prependTo('#slideBox');
+        // 2. 슬라이드 박스를 위로 이동 (헤더 높이만큼)
+        $('#slideBox').css('margin-top',-h);
+        // 3. 슬라이드 박스를 위로 이동하는 애니메이션 (헤더의 위치0으로)
+        $('#slideBox').stop().animate({'margin-top':'0'},600);
+        });
+    };  // toDown
     
     
     // 슬라이드 play
