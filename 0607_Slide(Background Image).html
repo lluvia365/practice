@@ -105,6 +105,46 @@
         cursor: pointer;
     }
     
+    .caption {
+        position: absolute;
+        top:50%; left: 50%;
+        transform: translate(-50%,-50%);
+        width:80%;
+        display: none;
+    }
+    
+    .title1 {
+        font-size: 5rem;
+        color:#FFF;
+        text-align: center;
+        text-shadow: 3px 3px 3px rgba(0,0,0,.5);
+        animation: title1 .6s .6s both;
+    }
+    
+    .title2 {
+        font-size:2rem;
+        font-weight: normal;
+        color:#FFF;
+        text-align: center;
+        text-shadow: 2px 2px 2px rgba(0,0,0,.3);
+        animation:title2 .6s .8s both;
+    }
+    
+    
+    @keyframes title1 {
+        from { transform: translateX(-20%); opacity: 0 }
+        to { transform: translateX(0); opacity: 1 }
+    }
+        
+    @keyframes title2 {
+        from { transform: translateX(10%); opacity: 0 }
+        to { transform: translateX(0%); opacity: 1 }
+    }
+    
+    
+    
+    
+    
     
 </style>
 
@@ -120,6 +160,18 @@
         
         if(slideNo > 2) slideNo = 0;
         if(slideNo < 0) slideNo = 2;
+        
+        $('.circle').css({  // 모든 서클버튼 스타일
+            'background':'transparent',
+            'width':'15px'
+        });
+        
+        $('.circle').eq(slideNo).css({  // 현재 서클버튼 스타일
+            'background':'#FFF',
+            'width':'30px',
+            'border-radius': '20px'
+        });
+        
         
         
         // 전달받은 값(no)에 따라 슬라이드의 이동 방향 결정
@@ -182,17 +234,20 @@
         });
         
         
-        $('.pause').click(function(){
+        $('.pause').click(function(){  // 일시정지 버튼 클릭
             stopSlide();  // 슬라이드 중지
             $(this).addClass('active');  // active 속성 주기
             $('.play').removeClass('active');  // play에 있던 active속성 없애기
         });
         
-        $('.play').click(function(){
+        $('.play').click(function(){  // 재생 버튼 클릭
             playSlide();  // 슬라이드 재생
             $(this).addClass('active');  // active 속성 주기
             $('.pause').removeClass('active');  // pause에 있던 active속성 없애기
         });
+        
+        
+        
 	});  //$(function()
 
     
@@ -224,6 +279,22 @@
             
             <div class="control pause"></div>
             <div class="control play active"></div>
+        </div>
+        
+        
+        <div class="caption">
+            <h1 class="title1">GALLERY Part. 1</h1>
+            <h3 class="title2">Creative Design</h3>
+        </div>
+                
+        <div class="caption">
+            <h1 class="title1">GALLERY Part. 2</h1>
+            <h3 class="title2">Creative Design</h3>
+        </div>
+                
+        <div class="caption">
+            <h1 class="title1">GALLERY Part. 3</h1>
+            <h3 class="title2">Creative Design</h3>
         </div>
         
     </header>
