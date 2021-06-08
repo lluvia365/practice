@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title> jQuery Slider(Multi) </title>
+
+<style>
+
+   @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+   *{ box-sizing:border-box; margin:0; outline:0 }
+
+   body {
+       font-family: 'Nanum Gothic', sans-serif;
+   }
+    
+    
+    #header {
+        width:95%; max-width: 1200px;    
+        margin:auto;
+        position: relative;
+        border:3px solid red;
+    }
+    
+    #slideBox {
+        width:200%;  /* 3장씩 2세트 (총 6장) */
+        display: flex;
+    }
+    
+    .slide {
+        width:calc(100% / 6);
+        padding: 0 5px;
+        display: block;
+    }
+    
+    
+
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    
+    var loop;
+    
+    //왼쪽으로 이동하는 슬라이드
+    function toLeft(){
+        // 1. 슬라이드 박스를 왼쪽으로 이동
+        // 헤더를 기준으로 슬라이드1장값
+        $('#slideBox').stop().animate({'margin-left':'-33.3333%'},600,function(){
+            // 2. 첫번째 슬라이드를 슬라이드 박스 맨뒤로 이동
+            $('.slide:first').appendTo('#slideBox');
+            //3. 슬라이드 박스를 원래위치로 되돌림
+            $('#slideBox').css('margin-left','0');
+        });    
+    };
+    
+    
+
+	$(function(){  // 페이지 열릴 때 
+
+		
+
+	});  //$(function()
+
+
+</script>
+
+</head>
+
+
+<body>
+
+<header id="header">
+    
+    <div id="slideBox">
+        <img src="images/Image01.jpg" class="slide" />
+        <img src="images/Image02.jpg" class="slide" />
+        <img src="images/Image03.jpg" class="slide" />
+        <img src="images/Image04.jpg" class="slide" />
+        <img src="images/Image05.jpg" class="slide" />
+        <img src="images/Image06.jpg" class="slide" />
+    </div>
+    
+</header>    
+
+
+</body>
+</html>
