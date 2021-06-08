@@ -84,7 +84,15 @@
         // 슬라이드의 가로폭을 계산된 크기로 맞추기
         $('.slide').width(slideWidth);
         
+        // 슬라이드 박스의 크기 변경하기
+        $('#slideBox').width(slideWidth * 6)
+        
     };
+    
+    
+    // 페이지가 열리거나 창의 폭이 조절될 때 슬라이드 폭 조절(autoWidth)
+    $(document).ready(autoWidth);
+    $(window).resize(autoWidth);
     
     
     
@@ -111,6 +119,24 @@
         // 3. 슬라이드 박스를 헤더 안으로(원래위치로) 이동(0.6초동안)
         $('#slideBox').stop().animate({'margin-left':0},600);
     };
+    
+   
+//  화면에 보여지는 슬라이드 개수에 따라 슬라이드박스,슬라이드 크기계산   
+//    
+//    6장의 슬라이드가 화면에 4장씩 보일때 (4장 = 100%)
+//    .slide의 width값은 25%, #slideBox의 width값은 150%
+//    (25%짜리 4장 1세트(100%)+2장(50%))
+//    
+//    6장의 슬라이드가 화면에 2장씩 보일때 (2장 = 100%)
+//    .slide의 width값은 50%, #slideBox의 width값은 300%
+//    (50%짜리2장 1세트(100%)*3세트)
+//
+//    6장의 슬라이드가 화면에 1장씩 보일때 (1장 = 100%)
+//    .slide의 width값은 100%, #slideBox의 width값은 600%
+//    (100%짜리 6장)
+//    
+    
+    
     
     
     function playSlide(){
