@@ -49,7 +49,7 @@
     //왼쪽으로 이동하는 슬라이드
     function toLeft(){
         // 1. 슬라이드 박스를 왼쪽으로 이동
-        // 헤더를 기준으로 슬라이드1장값
+        // 헤더를 기준으로 슬라이드 3장중 슬라이드1장값(33.3333%)
         $('#slideBox').stop().animate({'margin-left':'-33.3333%'},600,function(){
             // 2. 첫번째 슬라이드를 슬라이드 박스 맨뒤로 이동
             $('.slide:first').appendTo('#slideBox');
@@ -58,6 +58,14 @@
         });    
     };
     
+    
+    function playSlide(){
+        loop = setInterval('slide(1)',3000);
+    }
+    
+    function stopSlide(){
+        clearInterval(loop);
+    }
     
 
 	$(function(){  // 페이지 열릴 때 
@@ -72,7 +80,7 @@
 </head>
 
 
-<body>
+<body onLoad="playSlide()">
 
 <header id="header">
     
