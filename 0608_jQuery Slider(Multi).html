@@ -54,13 +54,13 @@
             // 2. 첫번째 슬라이드를 슬라이드 박스 맨뒤로 이동
             $('.slide:first').appendTo('#slideBox');
             //3. 슬라이드 박스를 원래위치로 되돌림
-            $('#slideBox').css('margin-left','0');
+            $('#slideBox').css('margin-left',0);
         });    
     };
     
     
     function playSlide(){
-        loop = setInterval('slide(1)',3000);
+        loop = setInterval('toLeft()',3000);
     }
     
     function stopSlide(){
