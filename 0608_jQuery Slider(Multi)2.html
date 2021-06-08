@@ -22,11 +22,12 @@
         width:95%; max-width: 1200px;    
         margin:auto;
         position: relative;
+        overflow: hidden;
         border:3px solid red;
     }
     
     #slideBox {
-        width:200%;  /* 3장씩 2세트 (총 6장) */
+        width:150%;  /* 4장씩+2장 (총 6장) */
         display: flex;
     }
     
@@ -49,8 +50,8 @@
     //왼쪽으로 이동하는 슬라이드
     function toLeft(){
         // 1. 슬라이드 박스를 왼쪽으로 이동
-        // 헤더를 기준으로 슬라이드 3장중 슬라이드1장값(33.3333%)
-        $('#slideBox').stop().animate({'margin-left':'-33.3333%'},600,function(){
+        // 헤더를 기준으로 슬라이드 4장중 슬라이드1장값(25%)
+        $('#slideBox').stop().animate({'margin-left':'-25%'},600,function(){
             // 2. 첫번째 슬라이드를 슬라이드 박스 맨뒤로 이동
             $('.slide:first').appendTo('#slideBox');
             //3. 슬라이드 박스를 원래위치로 되돌림
