@@ -55,12 +55,38 @@
     .right { right: 10px }
     
     
+    
+    @media screen 
+    
+    
 
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
+    
+    var slideWidth;  // 전역변수
+    
+    // 화면 해상도에 따라 슬라이드의 폭 계산
+    function autoWidth(){
+        // PC화면 기준 : 4등분 크기 (헤더를 기준으로 4등분-4장 보이게)
+        slideWidth = $('#header').width() / 4;
+        
+        // 700px 이하 화면 기준 : 2등분 크기(2장 보이게)
+        if($(sindow).width() <= 700)
+            slideWidth = $('#header').width() / 2;
+        
+        //400px 이하 화면 기준 : 1개
+        if($(sindow).width() <= 400)
+            slideWidth = $('#header').width();
+        
+        // 슬라이드의 가로폭을 계산된 크기로 맞추기
+        $('.slide').width(slideWidth);
+        
+    };
+    
+    
     
     var loop;
     
