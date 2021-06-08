@@ -23,7 +23,6 @@
         margin:auto;
         position: relative;
         overflow: hidden;
-        border:3px solid red;
     }
     
     #slideBox {
@@ -102,13 +101,13 @@
 		$('.left').click(function(){  // 이전 버튼 클릭
             // 만약 슬라이드박스가 애니메이션중이 아니면(안움직이면)
             if(!$('#slideBox').is(':animated'))
-            toRight();  // 이전 슬라이드 보기 (슬라이드 왼쪽으로 이동)
+            toRight();  // 이전 슬라이드 보기 (슬라이드 오른쪽으로 이동)
         });
         
 		$('.right').click(function(){  // 이전 버튼 클릭
             // 만약 슬라이드박스가 애니메이션중이 아니면(안움직이면)
             if(!$('#slideBox').is(':animated'))
-            toLeft();  // 다음 슬라이드 보기 (슬라이드 오른쪽으로 이동)
+            toLeft();  // 다음 슬라이드 보기 (슬라이드 왼쪽으로 이동)
         });
         
         
