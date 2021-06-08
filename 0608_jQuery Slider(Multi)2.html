@@ -37,6 +37,24 @@
         display: block;
     }
     
+.button {  /* 좌우버튼 공통 */
+        position: absolute;
+        top:50%;
+        transform: translateY(-50%);
+        color:#FFF;
+        background:none;
+        border:none;
+        font-size: 3rem;
+        opacity: .7s;
+        cursor: pointer;
+    }
+    
+    .button:hover { color:red }
+    
+    .left { left: 10px }
+    
+    .right { right: 10px }
+    
     
 
 </style>
@@ -57,6 +75,16 @@
             //3. 슬라이드 박스를 원래위치로 되돌림
             $('#slideBox').css('margin-left',0);
         });    
+    };
+    
+    // 오른쪽으로 이동하는 슬라이드
+    function toRight(){
+        // 1. 마지막 슬라이드를 슬라이드 박스 맨앞으로 이동
+        $('.slide:last').prependTo('#slideBox');
+        // 2. 슬라이드 박스를 왼쪽으로 이동(슬라이드 1장값 25%만큼)
+        $('#slideBox').css('margin-left','-25%');
+        // 3. 슬라이드 박스를 헤더 안으로(원래위치로) 이동(0.6초동안)
+        $('#slideBox').stop().animate({'margin-left':0},600);
     };
     
     
@@ -93,6 +121,9 @@
         <img src="images/Image05.jpg" class="slide" />
         <img src="images/Image06.jpg" class="slide" />
     </div>
+    
+    <button class="button left">&lang;</button>
+    <button class="button right">&rang;</button>
     
 </header>    
 
