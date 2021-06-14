@@ -21,12 +21,14 @@
     #secA {
         width:95%; max-width: 1200px;
         margin:50px auto;
+        position: relative;
         border:1px solid red;
     }
     
     #slideBox {
         width:200%;  /* 6장 슬라이드:3개(100%)*2세트 총6장*/ 
         display: flex;  /* 내부 슬라이드를 가로 연속 배치용 */
+        
     }
     
     .slide {  /* 각 슬라이드(이미지+캡션) div */
@@ -49,16 +51,56 @@
     .slideCaption {  /* 슬라이드 캡션 */
         padding:10px;
         border-radius: 0 0 10px 10px;
-        background:#ddd;
+        background:#f6b8b8;
     }
     
+    .button {
+        position: absolute;
+        top:50%;
+        transform: translateY(-50%);
+        width:30px;
+        font-size: 2.2rem;
+        border:none;
+        background:transparent;
+        color:#FFF;
+        cursor: pointer;
+    }
+    
+    .button:hover { color:#f6b8b8 }
+    
+    .left { left:30px }
+    .right { right:30px }
     
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
-
+    
+    var w;  // 슬라이드의 가로폭 계산용
+    
+    var loop;  // 자동 슬라이드 제어용
+    
+    // 화면 크기에 따라 슬라이드 폭 계산
+    function autoWidth(){
+        
+        // 슬라이드 폭 계산 : 섹션의 3등분(화면에 3장씩 보이게)
+        w = $('#secA').width() / 3;
+        
+        // 슬라이드 폭 변경(계산된 크기로 맞춤)
+        $('.slide').css('width',w);  // = ('.slide').width(w)
+        
+        // 슬라이드 박스의 폭 변경(슬라이드폭(1장당폭)*개수)
+        $('#slideBox').css('width',w*6);
+    }
+    
+    
+    // 페이지가 열리거나 창의 크기가 변경될 때 슬라이드 폭 자동 조절하기
+    $(document).ready(autoWidth);
+    $(window).resize(autoWidth);
+    
+    
+    
 	$(function(){  // 페이지 열릴 때 
 
 		
@@ -126,6 +168,8 @@
                 </div>
             </div>
             
+            <button class="button left">&lang;</button>
+            <button class="button right">&rang;</button>
         </div>
     </section>
 
