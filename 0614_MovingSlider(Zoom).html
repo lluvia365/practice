@@ -21,8 +21,9 @@
     #secA {
         width:95%; max-width: 1200px;
         margin:50px auto;
+        padding:30px 0;  /* 슬라이드 줌-인을 위한 여백 */
         position: relative;
-/*        overflow: hidden;*/
+        overflow: hidden;
     }
     
     #slideBox {
@@ -63,7 +64,7 @@
         border:none;
         background:transparent;
         color:#FFF;
-        opacity: .5s;
+        opacity: .7;
         transition:.3s;
         cursor: pointer;
     }
@@ -72,6 +73,16 @@
     
     .left { left:30px }
     .right { right:30px }
+    
+    
+    @media screen and (max-width:700px){
+        #secA { padding:0 }
+        
+        /* 모바일 화면에서는 모든 슬라이드가 100% 크기로 동일하게 맞춤 */
+        .slide, .slide:nth-child(2) { transform: scale(1)}
+        
+    }
+    
     
 </style>
 
@@ -92,6 +103,8 @@
         // 700px 미만 화면에서 슬라이드 1장씩 보이게 (100%)
         if($(window).width() < 700)
             w = $('#secA').width();
+        
+        
         
         // 슬라이드 폭 변경(계산된 크기로 맞춤)
         $('.slide').css('width',w);  // = ('.slide').width(w)
