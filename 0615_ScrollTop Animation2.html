@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title> ScrollTop Animation </title>
+
+<style>
+
+   @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+    
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
+   *{ box-sizing:border-box; margin:0; outline:0 }
+
+   body {
+       font-family: 'Nanum Gothic', sans-serif;
+   }
+
+    
+    #navi {
+        position: fixed;
+        top:0;
+        width:100%;
+        background:rgba(255,255,255,.3);
+        box-shadow: 0 3px 3px rgba(0,0,0,.3);
+    }
+    
+    #menu {
+        list-style: none; padding:0;
+        width:100%; max-width: 1200px;
+        margin: 5px auto;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .list {
+        line-height: 40px;
+        padding:0 10px;
+        margin:0 10px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        background:#ECA3F5;
+        color:#FFF;
+        cursor: pointer;
+    }
+    
+    .list:hover { background:#FFF; color:#72147E }
+    
+    
+    section { height: 100vh }
+    
+    #secA { background:#F6DFEB }
+    #secB { background:#E4BAD4 }
+    #secC { background:#F8EDED }
+    #secD { background:#CAF7E3 }
+    
+    section>h1 { 
+        font-size: 4rem;
+        text-align: center;
+        padding-top: 60px;
+    }
+    
+    #top {
+        position: fixed;
+        bottom:10px;
+        right: 10px;
+        width:4rem;
+        line-height: 4rem;
+        background:#FCF876;
+        font-size: 3rem;
+        text-align: center;
+        border-radius: 50px;
+        cursor: pointer;
+        transition:.3s;
+    }
+    
+    
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    
+    
+    $(window).scroll(function(){  // 화면을 스크롤할 때
+        // 스크롤 위치가 100픽셀을 넘으면 'top'버튼 보이기
+        // 그렇지 않으면(100픽셀 이하) 'top'버튼 숨기기
+        
+        if($(this).scrollTop()>100)
+            $('#top').css('transform','scale(1)')
+        else
+            $('#top').css('transform','scale(0)');
+    })
+    
+	$(function(){  // 페이지 열릴 때 
+        
+        $('.list').click(function(){  // 각 메뉴를 클릭할 때
+            var link = $(this).attr('href');  // 클릭한 메뉴의 href값(연결할 대상)
+            var top = $(link).offset().top;  // 이동할 섹션의 세로 위치(시작) 값
+            
+            // 해당 섹션의 위치로 이동(0.6초 동안)
+            $('body,html').stop().animate({'scrollTop':top},600);
+            
+        });  //$('.list).click()
+        
+        
+        
+        $('#top').click(function(){  // 'top'버튼 클릭할 때
+            // 화면의 스크롤 위치를 맨 상단으로 변경
+            $('body,html').stop().animate({'scrollTop':'0'},500)
+            
+        });
+		
+
+	});  //$(function()
+
+
+</script>
+
+</head>
+
+
+<body>
+
+    <nav id="navi">
+        <ul id="menu">
+            <li class="list" href="#secB">About</li>
+            <li class="list" href="#secC">Member</li>
+            <li class="list" href="#secD">Contact</li>
+        </ul>    
+    </nav>
+    
+    
+    <section id="secA"><h1>Home</h1></section>
+    <section id="secB"><h1>About</h1></section>
+    <section id="secC"><h1>Member</h1></section>
+    <section id="secD"><h1>Contact</h1></section>
+    
+    <div id="top"><i class="fas fa-chevron-up"></i>
+    </div>
+    
+</body>
+</html>
