@@ -48,7 +48,7 @@
         cursor: pointer;
     }
     
-    .list:hover { background:#FFF; color:#72147E }
+    .list:hover { background:#FFF; color:#F8EDED }
     
     
     section { height: 100vh }
@@ -78,6 +78,8 @@
         transition:.3s;
     }
     
+    #top:hover { background:#72147E }
+    
     
 </style>
 
@@ -100,7 +102,7 @@
         var current = $(this).scrollTop();  // 현재 화면의 스크롤 위치값
         
         var x;  // 반복문을 위한 값
-        for(x=0; x<4; x++){ // 0~3의 값을 발생하면서 반복(섹션이 4개이므로 0~3까지임)
+        for(x=0; x<3; x++){ // 0~2의 값을 발생하면서 반복(섹션이 4개이므로 0~3까지임)
             var sec = $('.list').eq(x).attr('href')  // 각 메뉴의 링크값
             var secY = $(sec).offset().top;  // 각 메뉴의 위치값
             
@@ -159,6 +161,10 @@
     <section id="secB"><h1>About</h1></section>
     <section id="secC"><h1>Member</h1></section>
     <section id="secD"><h1>Contact</h1></section>
+    
+    
+    <p>&nbsp;</p>
+    
     
     <div id="top">
         <i class="fas fa-chevron-up"></i>
