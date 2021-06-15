@@ -59,7 +59,12 @@
         
 
 	$(function(){  // 페이지 열릴 때 
-
+        
+        $('#top').click(function(){  // 'top'버튼 클릭할 때
+            // 화면의 스크롤 위치를 맨 상단으로 변경
+            $('body,html').stop().animate({'scrollTop':'0'},500)
+            
+        });
 		
 
 	});  //$(function()
