@@ -64,6 +64,15 @@
         padding-top: 60px;
     }
     
+    /* 화면을 스크롤할 때 적용할 애니메이션 */
+    .title { animation: title 1s both }
+    
+    @keyframes title {
+        from { transform: translateX(20%); opacity: 0 }
+        to { transform: translateX(0); opacity: 1 }
+    }
+    
+    
     #top {
         position: fixed;
         bottom:10px;
@@ -80,6 +89,8 @@
     
     #top:hover { background:#72147E }
     
+    
+
     
 </style>
 
@@ -111,6 +122,8 @@
             if( current > secY ){
                 $('.list').css('background','#ECA3F5');  // 모든 메뉴 색상 초기화
                 $('.list').eq(x).css('background','#72147E');  // 해당 메뉴 색상 변경
+                
+                $('.text').eq(x).addClass('title');  // 해당 제목에 애니메이션 적용
             }
             else {
                 $('.list').eq(x).css('background','#ECA3F5');  // 메뉴 색상 초기화
@@ -160,10 +173,10 @@
     </nav>
     
     
-    <section id="secA"><h1>Home</h1></section>
-    <section id="secB"><h1>About</h1></section>
-    <section id="secC"><h1>Member</h1></section>
-    <section id="secD"><h1>Contact</h1></section>
+    <section id="secA"><h1 class="text">Home</h1></section>
+    <section id="secB"><h1 class="text">About</h1></section>
+    <section id="secC"><h1 class="text">Member</h1></section>
+    <section id="secD"><h1 class="text">Contact</h1></section>
     
     
     <p>&nbsp;</p>
