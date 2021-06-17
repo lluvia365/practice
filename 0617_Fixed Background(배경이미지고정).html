@@ -24,11 +24,37 @@
         background-size: cover;
         background-repeat:no-repeat;
         height: 50vh;
+        position: relative;
     }
 
     #box1 { background-image: url(images/Image01.jpg)}
     #box3 { background-image: url(images/Image02.jpg)}
     #box5 { background-image: url(images/Image03.jpg)}
+    
+    .inbox { 
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        color: #FFF;
+        text-align: center;
+    }
+    
+    .inbox>h1 {
+        font-size: 3rem;
+    }
+    
+    .inbox>h3 {
+        font-weight: 200;
+    }
+    
+    #box2, #box4, #box6 {
+        width: 100%; max-width: 1200px;
+        margin: 50px auto;
+        line-height: 2rem;
+        font-size: 1.2rem;
+    }
+    
     
 </style>
 
@@ -51,8 +77,10 @@
 <body>
 
     <div id="box1">
-        <h1>Section 1</h1>
-        <h3>Lorem ipsum dolor sit amet.</h3>
+       <div class="inbox">
+            <h1>Section 1</h1>
+            <h3>Lorem ipsum dolor sit amet.</h3>
+        </div>
     </div>
     
     <div id="box2">
@@ -60,8 +88,10 @@
 
 
     <div id="box3">
-        <h1>Section 1</h1>
-        <h3>Lorem ipsum dolor sit amet.</h3>
+       <div class="inbox">
+            <h1>Section 2</h1>
+            <h3>Lorem ipsum dolor sit amet.</h3>
+        </div>
     </div>
     
     <div id="box4">
@@ -69,8 +99,10 @@
 
 
     <div id="box5">
-        <h1>Section 1</h1>
-        <h3>Lorem ipsum dolor sit amet.</h3>
+       <div class="inbox">
+            <h1>Section 3</h1>
+            <h3>Lorem ipsum dolor sit amet.</h3>
+        </div>
     </div>
     
     <div id="box6">
