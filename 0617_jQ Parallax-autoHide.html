@@ -81,11 +81,13 @@
 
     <script>
         
-        var before:  // 이전 스크롤 위치 기억
+        var before;  // 이전 스크롤 위치 기억
         
-        $(sindow).scroll(function(){  // 화면 스크롤 할 때
+        $(window).scroll(function(){  // 화면 스크롤 할 때
             var current = $(this).scrollTop();  // 현재 스크롤 위치 확인
             
+            // 현재 스크롤 위치가 이전 값보다 크면 내비게이션 숨기고,
+            // 그렇지 않으면 내비게이션 보임
             if(current > before)
                 $('#navi').css('top','-60px');  // 네비게이션 위로 숨기기
             else
