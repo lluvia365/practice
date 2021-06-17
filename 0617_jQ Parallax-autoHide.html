@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title> Parallax,easeScroll,scroll Amimation </title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            outline: 0
+        }
+
+        body {
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+
+
+        #navi {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, .3);
+            box-shadow: 0 5px 5px rgba(0,0,0,.3);
+            transition: .3s;
+            z-index: 9;
+        }
+
+        #navInBox {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        #menu {
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+
+        .main {
+            width: 20%;
+            line-height: 50px;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        
+        section {
+            height: 100vh;
+            position: relative;
+        }
+        
+        section>h1 {
+            position: absolute;
+            top:50%; left:50%;
+            transform: translate(-50%,-50%);
+            color:#FFF;
+            font-size: 5rem;
+            text-shadow: 0 0 0 8px rgba(0,0,0,.3);
+        }
+        
+        
+        
+    </style>
+
+    <!-- parallax Plugin용 스타일 -->
+    <link href="plugin/parallax/jQ-parallax.css" rel="stylesheet" />
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+
+    <script>
+        
+        var before:  // 이전 스크롤 위치 기억
+        
+        $(sindow).scroll(function(){  // 화면 스크롤 할 때
+            var current = $(this).scrollTop();  // 현재 스크롤 위치 확인
+            
+            if(current > before)
+                $('#navi').css('top','-60px');  // 네비게이션 위로 숨기기
+            else
+                $('#navi').css('top','0px');  // 네비게이션 원래위치로
+            
+            before = current;  // 현제 스크롤 위치를 다음을 위해 이전 값으로 저장
+            
+        });
+        
+        $(function() { // 페이지 열릴 때 
+
+
+
+        }); //$(function()
+    </script>
+
+</head>
+
+
+<body>
+
+    <nav id="navi">  <!-- 100% 상단 고정용 -->
+        <div id="navInBox">  <!-- 1200px 가운데 맞춤용 -->
+            <ul id="menu">
+                <li class="main">MENU1</li>
+                <li class="main">MENU2</li>
+                <li class="main">MENU3</li>
+                <li class="main">MENU4</li>
+                <li class="main">MENU5</li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <section id="sec1" class="parallax-background" style="background-image:url('images/Image01.jpg');">
+        <h1>Section 1</h1>
+    </section>
+
+    <section id="sec2" class="parallax-background" style="background-image:url('images/Image02.jpg');">
+        <h1>Section 2</h1>
+    </section>
+
+    <section id="sec3" class="parallax-background" style="background-image:url('images/Image03.jpg');">
+        <h1>Section 3</h1>
+    </section>
+
+    <section id="sec4" class="parallax-background" style="background-image:url('images/Image04.jpg');">
+        <h1>Section 4</h1>
+    </section>
+
+
+
+
+
+
+    <!-- jQParallax Plugin 연결 -->
+    <script src="plugin/parallax/jQ-parallax.js"></script>
+</body></html>

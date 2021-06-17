@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<title> jQ Parallax</title>
+<title> jQ Parallax-autoHide </title>
 
 <style>
 
@@ -71,14 +71,18 @@
 
 <body>
     
-    <ul id="memu">
-        <li class="list">MENU1</li>
-        <li class="list">MENU2</li>
-        <li class="list">MENU3</li>
-        <li class="list">MENU4</li>
-        <li class="list">MENU5</li>
+    <nav id="navi">  <!-- 100% 상단 고정용 -->
+        <div id="navInBox">  <!-- 1200px 가운데 맞춤용 -->
+            <ul id="menu">
+                <li class="main">MENU1</li>     
+                <li class="main">MENU2</li>     
+                <li class="main">MENU3</li>     
+                <li class="main">MENU4</li>     
+                <li class="main">MENU5</li>     
+            </ul>       
+        </div>
+    </nav>
 
-    </ul>
     <div id="box1" class="parallax-background" style="background-image:url('images/Image01.jpg');">
        <div class="inbox">
             <h1>Section 1</h1>
