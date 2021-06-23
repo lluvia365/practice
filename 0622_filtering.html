@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Filtering </title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+   * { box-sizing:border-box; margin:0; outline:0 } 
+
+   body {font-family: 'Nanum Gothic', sans-serif }
+
+	#box {   /*전체 박스*/
+		width:100%; max-width: 1200px;
+		margin: auto;
+	}
+	
+	.button {   /*버튼 공통*/
+		background:#ddd; border: none;
+		font-size: 1.3rem; padding: 5px 10px;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition:.3s;
+	}
+	.button:hover { background: #000; color: #fff;}
+	.active { background: #000; color: #fff;}
+	
+	
+	#galleryBox {
+		display:flex;
+		flex-wrap:wrap;
+		margin-top:20px;
+	}
+	.thumb {   /*섬네일 이미지 공통*/
+		display: block;
+		width: calc((100% - 30px) / 3);
+		margin:0 15px 15px 0;
+	}
+	
+	.thumb:nth-child(3n) { margin-right:0 }
+	
+	
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+	
+	//각 버튼을 클릭할 때 보여지게 할 클래스 이름들
+	var gallery = ['thumb', 'spring', 'summer','fall','winter'];
+	
+	$(function(){ 
+
+		//각 버튼 클릭할 때
+		$('.button').click(function(){
+			//1. 모든 버튼 비활성으로 바꾸기
+			//2. 현재 버튼 활성으로 바꾸기
+			var no = $(this).index();   //클릭한 버튼의 순번
+			
+			$('.button').removeClass('active');   //'active' 클래스 제거
+			$('.button').eq(no).addClass('active');  //'active' 클래스 적용
+			
+			
+			
+			//현재 버튼에 해당되는 클래스 이름 확인
+			var filterName = gallery[no];
+			console.log(filterName);
+			
+			//1. 모든 이미지 숨김
+			//2. 해당 클래스의 이미지만 보임
+			$('.thumb').hide();
+			$("[class*="+filterName+"]").fadeIn();
+			    //클래스가 해당 이름과 같은 이미지만 보이기
+		});
+		
+	});    //$(function)
+
+</script>
+
+</head>
+
+
+<body>
+
+<div id="box">
+	<div id="buttons">
+		<button class="button all active">all</button>
+		<button class="button spring">spring</button>
+		<button class="button summer">summer</button>
+		<button class="button fall">fall</button>
+		<button class="button winter">winter</button>
+	</div>
+	
+	<div id="galleryBox">
+		<img src="images6/thumb01.jpg" class="thumb spring" />
+		<img src="images6/thumb02.jpg" class="thumb spring" />
+		<img src="images6/thumb03.jpg" class="thumb spring" />
+		<img src="images6/thumb04.jpg" class="thumb summer" />
+		<img src="images6/thumb05.jpg" class="thumb summer" />
+		<img src="images6/thumb06.jpg" class="thumb summer" />
+		<img src="images6/thumb07.jpg" class="thumb fall" />
+		<img src="images6/thumb08.jpg" class="thumb fall" />
+		<img src="images6/thumb09.jpg" class="thumb fall" />
+		<img src="images6/thumb10.jpg" class="thumb winter" />
+		<img src="images6/thumb11.jpg" class="thumb winter" />
+		<img src="images6/thumb12.jpg" class="thumb winter" />
+		<img src="images6/thumb13.jpg" class="thumb winter" />
+		<img src="images6/thumb14.jpg" class="thumb summer" />
+	</div>
+</div>	
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
