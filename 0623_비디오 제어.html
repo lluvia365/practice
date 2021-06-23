@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title> 비디오 제어 </title>
+
+<style>
+
+   @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+   *{ box-sizing:border-box; margin:0; outline:0 }
+
+   body {
+       font-family: 'Nanum Gothic', sans-serif;
+   }
+    
+    #videoBox {
+        width:100%; max-width: 1200px;
+        margin: auto;
+        position: relative;
+    }
+    
+    #title {
+        position: absolute;
+        top:10px; left: 50%;
+        transform: translateX(-50%);
+        color: #FFF;
+    }
+    
+    #control {
+        position: absolute;
+        bottom:0; left:0;
+    }
+    
+    #control>button {
+        background: transparent;
+        border:none;
+        color:#FFF;
+        opacity: .5;
+        cursor: pointer;
+    }
+    
+
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+
+	$(function(){  // 페이지 열릴 때 
+
+		
+
+	});  //$(function()
+
+
+</script>
+
+</head>
+
+
+<body>
+
+<div id="videoBox">
+    
+    <h1 id="title">Lorem ipsum dolor sit amet.</h1>
+    
+    <div id="control">
+        <button id="play">Play</button>
+        <button id="pause">Pause</button>
+        <button id="stop">Stop</button>
+    </div>
+    
+    <video id="video" loop poster="media/screen.jpg" >
+        <source src="media/mv1.mp4" type="video/mp4" />
+    </video>
+    
+</div>
+
+
+
+</body>
+</html>
