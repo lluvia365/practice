@@ -21,6 +21,8 @@
         width:100%; max-width: 1200px;
         margin: auto;
         position: relative;
+        border-radius: 20px;
+        overflow: hidden;
     }
     
     #title {
@@ -43,6 +45,13 @@
         cursor: pointer;
     }
     
+    #control>button:hover { opacity: 1 }
+    
+    .active { opacity:1 }
+    
+    #video {
+        width:100%;
+    }
 
 </style>
 
@@ -52,7 +61,9 @@
 
 	$(function(){  // 페이지 열릴 때 
 
-		
+		$('#play').click(function(){
+            $('#video').get(0).play();
+        });
 
 	});  //$(function()
 
@@ -71,7 +82,7 @@
     <div id="control">
         <button id="play">Play</button>
         <button id="pause">Pause</button>
-        <button id="stop">Stop</button>
+        <button id="stop" class="active">Stop</button>
     </div>
     
     <video id="video" loop poster="media/screen.jpg" >
