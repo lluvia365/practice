@@ -17,17 +17,26 @@
        font-family: 'Nanum Gothic', sans-serif;
    }
 
+    #preload {
+        position: fixed;
+        top:0; left:0;
+        width:100%; height: 100%;
+        background:#fff;
+        display: flex;
+        justify-content: center; align-items: center;
+    }
+    
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
+    // 페이지의 모든 내용(텍스트, 이미지, 동영상 등)이 읽혀지면 
+    //  (preload사용할땐 (window).on('load)를 사용해야함)
+    $(window).on('load',function(){  
+        $('#preload').fadeOut();  // 프리로딩 화면 사라짐
+    });
 
-	$(function(){  // 페이지 열릴 때 
-
-		
-
-	});  //$(function()
 
 
 </script>
@@ -37,7 +46,16 @@
 
 <body>
 
-    <img src="https://picsum.photos/200/300" />
+   <!-- 프리로딩 내용 -->
+   <div id="preload">
+        <img src="images2/preload.gif" />   
+   </div>
+   
+    <img src="https://picsum.photos/1000/600?image=1000" />
+    <img src="https://picsum.photos/1000/600?image=1001" />
+    <img src="https://picsum.photos/1000/600?image=1002" />
+    <img src="https://picsum.photos/1000/600?image=1003" />
+    <img src="https://picsum.photos/1000/600?image=1004" />
 
 
 </body>
