@@ -50,7 +50,7 @@
     
     #control>button:hover { opacity: 1 }
     
-    .active { opacity:1 }  /* 버튼 하이라이트용 */
+    .active { opacity:1 !important }  /* 버튼 하이라이트용 (!important - 강제 우선적용하기) */
     
     #video {
         width:100%;
@@ -92,10 +92,20 @@
                 // 비디오 박스가 화면 안으로 모두 들어오는 위치
         
         // 현재 스크롤 위치가 비디오박스의 위치에 도달하면 비디오 재생하기
-        if( current>y && current<video )   // 비디오박스 화면안에 있을때
-            $('#video').get(0).play();              // 동영상 시작
-        else                                                // 비디오박스가 화면밖으로 벗어나면
+        if( current>y && current<(video+200) ) {
+                     
+            // 비디오박스 화면안에 있을때
+            $('#video').get(0).play();  // 동영상 시작      
+            
+            $('#control>button').removeClass('active');  // 하이라이트 모두 해제
+            $('#play').addClass('active');  // play 버튼 하이라이트 적용
+        } 
+        else{                                                // 비디오박스가 화면밖으로 벗어나면
             $('#video').get(0).pause();           // 동영상 정지
+            
+            $('#control>button').removeClass('active');  // 하이라이트 모두 해제
+            $('#pause').addClass('active');  // pause 버튼 하이라이트 적용
+        }    
     });
 
 
@@ -121,7 +131,7 @@
         <button id="stop" class="active">Stop</button>
     </div>
     
-    <video id="video" loop poster="media/screen.jpg" >
+    <video id="video" loop muted poster="media/screen.jpg" >
         <source src="media/mv1.mp4" type="video/mp4" />
     </video>
     
