@@ -67,20 +67,28 @@
 		$('#play').click(function(){  // 재생버튼
             $('#video').get(0).play();  // 동영상 재생
             
-//            $('#control>button').removeClass('active');
-//            $(this).addClass('active');
+            highlight(this);
         });
         
         $('#pause').click(function(){  // 일시정지 버튼
             $('#video').get(0).pause();  // 동영상 정지
+            
+            highlight(this);    
         });
         
         $('#stop').click(function(){  // 정지 버튼
             $('#video').get(0).currentTime=0;  // 재생위치를 처음으로 맞춤    
             $('#video').get(0).pause();  // 동영상 정지
+            
+            highlight(this);
         });
 
 	});  //$(function()
+    
+    function highlight(x) {
+        $('#control>button').removeClass('active');  // 모든 버튼 초기화
+        $(x).addClass('active');  // 현재 버튼 하이라이트
+    }
     
     
     $(window).scroll(function(){  // 화면 스크롤할 때
