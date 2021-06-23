@@ -34,7 +34,8 @@
     
     #control {
         position: absolute;
-        bottom:0; left:0;
+        bottom:10px; left:10px;
+        z-index: 9;
     }
     
     #control>button {
@@ -47,7 +48,7 @@
     
     #control>button:hover { opacity: 1 }
     
-    .active { opacity:1 }
+    .active { opacity:1 }  /* 버튼 하이라이트용 */
     
     #video {
         width:100%;
@@ -61,8 +62,15 @@
 
 	$(function(){  // 페이지 열릴 때 
 
-		$('#play').click(function(){
+		$('#play').click(function(){  // 재생버튼
             $('#video').get(0).play();
+            
+//            $('#control>button').removeClass('active');
+//            $(this).addClass('active');
+        });
+        
+        $('#pause').click(function(){  // 일시정지 버튼
+            $('#video').get(0).pause();
         });
 
 	});  //$(function()
