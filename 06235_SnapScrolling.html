@@ -143,11 +143,11 @@
             // 각 버튼이 가리키는 위치 값
             
 //            var x = $('.list').eq(x).attr('href');  // 각 버튼이 가리키는 곳
-//            var x2 = x.offset().top;  // 각 위치값   위에 var=y나 이거 둘중 하나 쓰기
+//            var x2 = x.offset().top;  // 각 위치값   (위에 var=y나 이거 둘중 하나 쓰기)
             
             // 현재 스크롤 위치(current)가 해당 내용의 위치(y)를 넘으면
             // 해당 버튼을 하이라이트 하기
-            if( current > y ) {
+            if( current >= y ) {
                 $('.list').removeClass('active');  // 모든버튼 하이라이트 제거
                 $('.list').eq(x).addClass('active');  // 해당버튼 하이라이트
             }
