@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>Snap Scroll</title>
+<link href="../../form.css" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+<link href="../../inc/howtouse.css" rel="stylesheet">    
+<style>
+    * { margin:0; padding:0; border:0 }
+
+    header { height:120px; background-color:#F00; padding:20px }
+
+    section { height:100vh; padding:20px }
+
+    section:nth-child(1){ background-color:#0F0 }
+    section:nth-child(2){ background-color:#FF0 }
+    section:nth-child(3){ background-color:#0FF }
+
+    footer {
+        height:320px;
+        background-color:#00F; padding:20px  }
+
+    span {
+        display:inline-block;
+        font-size:2em;
+
+        opacity:0;
+        transition:all 0.5s;
+        transition-delay:0.2s }
+    
+    .snap-scroll-visible span {
+        margin-top:16px;
+        opacity:1 }
+</style>
+</head>
+
+<body>
+
+    <header><span>HEADER</span></header>
+
+    <div>
+        <section id="section1"><span>Section 1</span>
+            <br />Download from <a href="https://www.jqueryscript.net/animation/Snap-To-Section-SnapScroll.html" target="_blank">jqueryscript.net</a>
+        </section>
+        <section id="section2"><span>Section 2</span></section>
+        <section id="section3"><span>Section 3</span></section>
+    </div>
+
+    <footer><span>FOOTER</span></footer>
+
+
+
+<section id="section4">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#howToUseBtn").click(function(){
+		$("#howtoBox").slideToggle();
+	});
+});
+</script>
+<div id="howToUseBtn">How To Use</div>
+
+<div id="howtoBox">
+      	<div id="howto">
+        	<h2>How to use</h2>
+            <pre style="word-break:break-all; white-space:pre-wrap"><span class="remarkNo">1. 해당 사이트를 통해 스크립트 파일 다운로드</span>
+    URL: <a href="https://www.jqueryscript.net/animation/background-parallax-scroll-effect.html" class="btn1" target="_blank">jqueryscript.net</a> or <a href="../parallax_scroll.zip" class="btn2">Download</a>
+
+<span class="remarkNo">2. HTML 문서의 &lt;head&gt;에 스타일 파일과 jQuery/스크립트 파일 연결</span>
+   <span class="source_code">&lt;link href="style.css" rel="stylesheet"&gt;
+  
+  &lt;script src="https://code.jquery.com/jquery-3.3.1.min.js" &gt;&lt;/script&gt;
+  &lt;script src="app.js"&gt;&lt;/script&gt;
+</span>
+
+<span class="remarkNo">3. body의 해당 위치에 아래의 내용 복사</span>
+  <span class="source_code">  &lt;div <b>class="parallax"</b> id="parallax-1" data-image-src="<b>images/coffee_01.jpg</b>"&gt;
+      &lt;div class="caption"&gt;  <span class="remark">//박스 내용</span>
+         &lt;span class="border"&gt;SCROLL DOWN&lt;/span&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;</span>
+  
+
+            </pre>
+        </div>
+</div>   
+
+
+
+
+
+<div class="scrollBox"><i class="fas fa-angle-up icon"></i></div>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+
+<style>
+.scrollBox { 
+	display:none; position:fixed; right:10px; bottom:10px;
+	width:40px; line-height:40px; border-radius:10%; 
+	background:#06F; text-align:center; cursor:pointer; transition:.3s;
+}
+.scrollBox:hover { border-radius:50%; }
+.motion1 { display:block; animation:fadein .5s; }
+.icon { text-align:center; color:#fff;}
+
+@keyframes fadein { from{opacity:0; transform:scale(0,0)} to{opacity:1; transform:scale(1,1)} }
+
+</style>
+
+
+<script> 
+$(window).scroll(function() {
+  
+  //화면(상단)의 스크롤  위치가 100이상이면 스타일 적용 > 보이게 함, 미만이면 스타일 제거 > 사라지게 함
+  if($(this).scrollTop() >= 100) 
+  	$('.scrollBox').addClass('motion1');
+  else 
+  	$('.scrollBox').removeClass('motion1');
+	
+	//스크롤 버튼 클릭하면 화면 상단으로 이동(애니메이션 효과 적용)
+	$('.scrollBox').click ( function() {
+		$('html,body').stop().animate( {scrollTop:0 },"slow");
+	});
+});
+</script> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Output Source Code -->
+<textarea   class="w_100_b" id="source" readonly style="margin-top:150px;">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>Snap Scroll</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+<style>
+    * { margin:0; padding:0; border:0 }
+
+    header { height:120px; background-color:#F00; padding:20px }
+
+    section { height:100vh; padding:20px }
+
+    section:nth-child(1){ background-color:#0F0 }
+    section:nth-child(2){ background-color:#FF0 }
+    section:nth-child(3){ background-color:#0FF }
+
+    footer {
+        height:320px;
+        background-color:#00F; padding:20px  }
+
+    span {
+        display:inline-block;
+        font-size:2em;
+
+        opacity:0;
+        transition:all 0.5s;
+        transition-delay:0.2s }
+    .snap-scroll-visible span {
+        margin-top:16px;
+        opacity:1 }
+</style>
+</head>
+
+<body>
+
+    <header><span>HEADER</span></header>
+
+    <div>
+        <section id="section1"><span>Section 1</span></section>
+        <section id="section2"><span>Section 2</span></section>
+        <section id="section3"><span>Section 3</span></section>
+    </div>
+
+    <footer><span>FOOTER</span></footer>
+    
+ 	</body>
+</html>       
+</textarea>
+
+<script>
+  obj=document.getElementById("source");
+  obj.style.height = (obj.scrollHeight+10)+"px";
+</script>        
+
+<!-- Snap-Scroll 플러그인-->    
+<script src="js/snap-scroll.js"></script>
+<script>
+    var snapScroll = $("header, section, footer").SnapScroll({
+        hashes:true
+    });
+
+</script>
+</section>
+	</body>
+</html>
