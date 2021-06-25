@@ -16,13 +16,93 @@
    body {
        font-family: 'Nanum Gothic', sans-serif;
    }
+    
+    header, section, footer {
+        width: 100%; height: 100vh;
+        position: relative;
+        
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    #header { background:url(images2/Image01.jpg)}
+    #secA { background:url(images2/Image02.jpg)}
+    #secB { background:url(images2/Image03.jpg)}
+    #secC { background:url(images2/Image04.jpg)}
+    #foot { background:url(images2/milky-way-1030765_1280.jpg)}
+    
+    .title {
+        position: absolute; top:10px; 
+        left:50%; transform: translateX(-50%);
+        
+        font-size: 3rem; color:#FFF;
+        text-shadow: 0 0 5px rgba(0,0,0,.5);
+    }
+    
+    .contents {
+        position: absolute;
+        left:10%; right: 10%; 
+        top:15%; bottom:10%;
+        
+        background:rgba(255,255,255,.2);
+        border:1px solid rgba(255,255,255,.5);
+    }
+    
+    
+    /* 우측 고정 내비게이션 */
+    #lnb {
+        position: fixed; right: 10px;
+        top:50%; transform: translateY(-50%);
+        z-index: 9;
+    }
+    
+    #menu2 {
+        list-style: none; padding: 0;
+        color: red;
+    }
+    
+    .list {
+        width:50px; line-height: 50px;
+        background:rgba(255,255,255,.6);
+        border-radius: 25px; /* 50%면 늘어났을때 타원처럼 보여서 25px만 */
+        position: relative;
+        text-align: center; font-size: 1.3rem;
+        margin:5px 0;
+        transition: .3s; cursor: pointer;
+    }
+    
+    .list:hover { background:rgba(255,255,255,1)}
+    .active { background:rgba(255,255,255,1)}  /* 하이라이트용 */
+    
+    .lnbTitle {
+        position: absolute; right: 50px;
+        top:50%; transform: translateY(-50%);
+        white-space: nowrap; /* 자동줄바꿈 방지 */
+        font-size: 1.2rem;
+        display: none;
+    }
 
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<!-- easyScroll Plugin -->
+<script src="plugin/easeScroll/jquery.easeScroll.js"></script>
+
+
 <script>
 
+    $(function(){  // 페이지 열릴 때 
+
+        $("html, body").easeScroll({    // 전체 문서에 'easeScroll' 플러그인 적용
+		animationTime:10000,     //스크롤 애니메이션 속도
+		stepSize:120,    //스크롤 이동 간격
+		//기타 기본 값 또는 생략 가능
+	});
+
+	});  //$(function()
+    
 	$(function(){  // 페이지 열릴 때 
 
 		
@@ -36,6 +116,17 @@
 
 
 <body>
+
+<nav id="lnb">
+    <ul id="menu2">
+        <li class="list active" href="#header">1<div class='lnbTitle'>HEADER</div></li>
+        <li class="list" href="#secA">2<div class='lnbTitle'>SECTION A</div></li>
+        <li class="list" href="#secB">3<div class='lnbTitle'>SECTION B</div></li>
+        <li class="list" href="#secC">4<div class='lnbTitle'>SECTION C</div></li>
+        <li class="list" href="#footer">5<div class='lnbTitle'>FOOTER</div></li>
+    </ul>    
+</nav>
+
 
 <header id="header">
    
@@ -63,6 +154,22 @@
     <h1 class="title">SECTION C</h1>
     <div class="contents"></div>
 </section>
+
+<footer id="foot">
+    <h1 class="title">FOOTER</h1>
+    <div class="contents"></div>
+</footer>
+
+
+<!-- SnapScroll Plugin -->
+<script src="plugin/snapscroll/js/snap-scroll.js"></script>
+<script>
+    //Snapscroll이 적용될 범위를 지정
+    var snapScroll = $("header, section, footer").SnapScroll({
+        hashes:true
+    });
+
+</script>
 
 
 </body>
