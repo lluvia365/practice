@@ -30,7 +30,7 @@
     #secA { background:url(images2/Image02.jpg)}
     #secB { background:url(images2/Image03.jpg)}
     #secC { background:url(images2/Image04.jpg)}
-    #foot { background:url(images2/milky-way-1030765_1280.jpg)}
+    #footer { background:url(images2/1004-1000x600.jpg)}
     
     .title {
         position: absolute; top:10px; 
@@ -102,7 +102,8 @@
 		stepSize:120,    //스크롤 이동 간격
 		//기타 기본 값 또는 생략 가능
             
-        });  
+        });  // easeScroll()
+        
         
         // 우측 LNB 버튼용
         $('.list').on({
@@ -118,7 +119,7 @@
             },
             
             click:function(){  // 클릭할 때
-                var x = $(this).attr('href').offset().top;
+                var x = $($(this).attr('href')).offset().top;
                 // 클릭한 버튼의 연결지점 위치값
                 
                 $('body,html').animate({'scrollTop':x},1000);
@@ -130,6 +131,29 @@
             
         
 	});  //$(function()
+    
+    
+    $(window).scroll(function(){
+       
+        var current = $(this).scrollTop();  // 현재 스크롤 위치
+        
+        var x;
+        for(x=0; x<5; x++){
+            var y = $($('.list').eq(x).attr('href')).offset().top;
+            // 각 버튼이 가리키는 위치 값
+            
+//            var x = $('.list').eq(x).attr('href');  // 각 버튼이 가리키는 곳
+//            var x2 = x.offset().top;  // 각 위치값   위에 var=y나 이거 둘중 하나 쓰기
+            
+            // 현재 스크롤 위치(current)가 해당 내용의 위치(y)를 넘으면
+            // 해당 버튼을 하이라이트 하기
+            if( current > y ) {
+                $('.list').removeClass('active');  // 모든버튼 하이라이트 제거
+                $('.list').eq(x).addClass('active');  // 해당버튼 하이라이트
+            }
+        }
+        
+    });  // $(window).scroll()
     
 
 
@@ -178,7 +202,7 @@
     <div class="contents"></div>
 </section>
 
-<footer id="foot">
+<footer id="footer">
     <h1 class="title">FOOTER</h1>
     <div class="contents"></div>
 </footer>
