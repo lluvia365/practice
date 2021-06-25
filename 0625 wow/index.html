@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title> WOW </title>
+
+       <!-- WOW Plugin 사용을 위한 애니메이션 스타일 -->
+       <link href="inc/animate.css" rel="stylesheet" />
+       
+       
+       <!-- jQuery Library -->
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+       
+       <!-- WOW Plugin -->
+       <link href="inc/wow.js" rel="stylesheet" />
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+        
+        * { box-sizing: border-box}
+        body { font-family: 'Noto Sans KR', sans-serif; font-weight: 400;  margin:0 }
+        
+        #navi1 {
+            width:100%; height:40px;
+            background:#85904C; color:#fff;
+        }
+        
+        #logo {
+            display:flex; justify-content: center; align-items: center;
+            width:100%; padding:20px; background:#85904C; color:#fff;
+        }
+        
+        #navi2 {
+            width:100%; background:#85904C; color:#fff;
+            border-top:1px solid rgba(255,255,255,.2);
+        }
+    
+        #menu {
+            list-style:none; margin:0 auto; padding:0;
+            display:flex; justify-content: space-between;
+            width:100%; max-width:1200px;
+        }
+        .main {
+            position:relative; line-height:40px; width:16%; text-align: center;
+            line-height: 50px;
+        }
+        .sub {
+            list-style:none; margin:0; padding:0;
+            position: absolute; top:100%; width:100%;
+            border:1px solid #aaa; display:none;
+        }
+        
+        #header { }
+        
+        #header img { width:100% }
+        
+        
+        
+        /*----- Section A -----*/
+        #secA { width:100%; max-width: 1200px; margin:50px auto; }
+        #listA {
+            list-style:none; margin:0; padding:0;
+            display:flex; flex-wrap:wrap;
+        }
+        
+        #listA li {
+            width: calc(50% - 10px); margin-right:10px; margin-bottom:10px;
+            position:relative;
+        }
+        #listA li:nth-child(2n) { margin-right:0 }
+        
+        #listA li img { width:100%}
+        
+        #listA li .caption { 
+            position:absolute; top:20%; left:50%; transform: translateX(-50%);
+            text-align:center; font-size:2rem; color:#fff; width:90%;
+        }
+        #listA li .caption h2,#listA li .caption p { margin:0}
+        #listA li button { 
+            position:absolute; bottom:15%;left:50%; 
+            transform: translateX(-50%); border:2px solid rgba(255,255,255,.7);
+            background:transparent; font-size:2rem; color:#fff;
+             cursor:pointer; transition: .3s
+        }        
+        #listA li button:hover { background:rgba(255,255,255,.5); }
+        
+        
+        /*----- Section B -----*/
+        #secB {  width:100%; max-width: 1200px; margin:50px auto; }
+        #listB {
+            list-style:none; margin:0; padding:0;
+            display:flex; flex-wrap:wrap;
+        }       
+        
+        #listB li {
+            width: calc(25% - 10px); margin-right:10px; margin-bottom:10px;
+            position:relative; text-align: center;
+        }
+        #listB li:nth-child(4n) { margin-right:0 }
+        
+        #listB li img { width:100%}        
+        
+        
+        
+        
+        /*----- Section C -----*/
+        #secC {  width:100%; margin:50px auto; }
+        #media {
+            width:100%; height: 300px; overflow: hidden;
+            position: relative; text-align: center;
+        }
+        
+        #media video{
+            width:100%; 
+        }
+        
+        #secC_Box {
+            position: absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+            width:100%; max-width: 1200px; background:rgba(0,0,0,.5); color:#fff;
+            padding:30px;
+        }
+        
+        #secC button { 
+            border:2px solid rgba(255,255,255,.7);
+            background:transparent; font-size:1.3rem; color:#fff; padding:10px;
+             cursor:pointer; transition: .3s
+        }        
+        #secC button:hover { background:rgba(255,255,255,.5); }
+        
+        
+        /*----- Section D -----*/
+        #secD { margin:50px auto; background:#444; color:#fff; padding:50px 10px; text-align: center }
+        #listD {
+            width:100%; max-width:1200px;
+            list-style:none; margin:0 auto; padding:0;
+            display:flex; flex-wrap:wrap;
+        }       
+        
+        #listD li {
+            width: calc(33% - 10px); margin-right:10px; margin-bottom:10px;
+            position:relative; text-align: center; background:#85904C;
+            padding:50px 20px; cursor:pointer; transition:.3s;
+        }
+        #listD li:hover { background:#555 }       
+        
+        
+        
+        
+        
+        /*----- Section D -----*/
+        #secE { margin:50px auto; 
+            background-image:url(images/banner_bg02.jpg);
+            background-attachment: fixed;
+            background-position: center;
+            color:#fff; padding:50px 10px; text-align: center }
+        #secEBox {
+            width:100%; max-width:1200px;
+            margin:50px auto; 
+        } 
+        
+    </style>
+    
+</head>
+
+
+
+<body>
+
+    <nav id="navi1">
+    
+    </nav>
+    
+    
+    <div id="logo">
+        <img src="images/logo.png" alt="LOGO" />
+    </div>
+    
+    
+    <nav id="navi2">
+        <ul id="menu">
+            <li class="main">COMPANY
+                <ul class="sub">
+                    <li href="sub1_1.html">회사소개</li>
+                    <li href="sub1_2.html">인사말</li>
+                    <li href="sub1_3.html">찾아오시는 길</li>
+                </ul>
+            </li>
+            <li class="main">BUSINESS
+                <ul class="sub">
+                    <li href="sub2_1.html">사업소개 01</li>
+                    <li href="sub2_2.html">사업소개 02</li>
+                </ul>
+            </li>
+            <li class="main">PRODUCT
+                <ul class="sub">
+                    <li href="sub3_1.html">제품소개 01</li>
+                    <li href="sub3_2.html">제품소개 02</li>
+                </ul>
+            </li>
+            <li class="main">ONLINE
+                <ul class="sub">
+                    <li href="sub4_1.html">온라인 문의</li>
+                </ul>
+            </li>
+            <li class="main">CUSTOMER
+                <ul class="sub">
+                    <li href="sub5_1.html">공지사항</li>
+                    <li href="sub5_2.html">질문과 답변</li>
+                </ul>
+            </li>
+            <li class="main" href="sub6_1.html">SHOP
+        </ul>
+    </nav>
+    
+    
+    <header id="header">
+        <img src="images/main_metapo01.jpg" alt="Header Image1" />
+    </header>
+    
+    
+    <section id="secA">
+        <ul id="listA">
+            <li >
+                <img src="images/banner01.jpg" />
+                <div class="caption">
+                    <h2>WEB DESIGN</h2>
+                    <p>최신 웹디자인 트렌드</p>
+                </div>
+                <button>Discover</button>
+            </li>
+            <li>
+                <img src="images/banner02.jpg" />
+                <div class="caption">
+                    <h2>WEB DESIGN</h2>
+                    <p>최신 웹디자인 트렌드</p>
+                </div>
+                <button>Discover</button>
+            </li>
+            <li>
+                <img src="images/banner03.jpg" />
+                <div class="caption">
+                    <h2>WEB DESIGN</h2>
+                    <p>최신 웹디자인 트렌드</p>
+                </div>
+                <button>Discover</button>
+            </li>
+            <li>
+                <img src="images/banner04.jpg" />
+                <div class="caption">
+                    <h2>WEB DESIGN</h2>
+                    <p>최신 웹디자인 트렌드</p>
+                </div>
+                <button>Discover</button>
+            </li>
+        </ul>
+    </section>
+    
+    
+    
+    <section id="secB">
+        <h2 style="text-align: center">ITEM LIST WIDGET 01</h2>
+        <ul id="listB">
+            <li><img src="images/item01.jpg"><br />01<br />100,000원</li>
+            <li><img src="images/item01.jpg"><br />02<br />99,000원</li>
+            <li><img src="images/item01.jpg"><br />03<br />99,000원</li>
+            <li><img src="images/item01.jpg"><br />04<br />150,000원</li>
+            <li><img src="images/item02.jpg"><br />05<br />990,000원</li>
+            <li><img src="images/item02.jpg"><br />06<br />99,000원</li>
+            <li><img src="images/item02.jpg"><br />07<br />99,000원</li>
+            <li><img src="images/item02.jpg"><br />08<br />99,000원</li>
+        </ul>
+    </section>
+    
+    
+    
+    <section id="secC">
+        <div id="media">
+            <video autoplay muted loop poster="images/banner_bg01.jpg">
+                <source src="media/bg_movie01.mp4" type="video/mp4">
+            </video>
+            
+            <div id="secC_Box">
+                <h2>Homepee Design</h2>
+                <p>1년 매출 성장률 20%를 달성하는 사업다각화로 성공신화를 보여드립니다. 다양한 타이포로 꾸미실수 있습니다.</p>
+                <button>ReadMe</button>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    
+    <section id="secD">
+        <h2>BUSINESS INFO icon_banner_02</h2>
+            <ul id="listD">
+                <li >
+                        <h3>WEB DESIGN</h3>
+                        <p>최신 웹디자인 트렌드로 각종 디자인 유형을 빌더화 하고 있습니다. </p>
+                </li>
+                <li >
+                        <h3> HTML5 &amp; CSS3</h3>
+                        <p>HTML5 &amp; CSS3 &amp; JQUERY 를 통해 웹표준 코딩을 최적화 합니다. FREX CSS3 CODING</p>
+                </li>
+                <li >
+                        <h3> RESPONSIVE</h3>
+                        <p>모든 디바이스 기기에 반응하여 제대로 보여지는 반응형웹을 추천합니다.</p>
+                </li>
+            </ul>
+    </section>
+    
+    
+    
+    
+    <section id="secE">
+        <div id="secEBox">
+            <h1>HOMEPEE Design</h1>
+            <h2>KAKAOTALK : homepee 기술문의</h2>
+            <h3>템플릿 / 모듈 / 위젯 / 게시판 / 페이지 샘플 제작전문</h3>
+        </div>
+    </section>
+    
+    
+    <footer id="footer">
+    
+    </footer>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
