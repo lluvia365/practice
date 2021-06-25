@@ -15,6 +15,9 @@
        <!-- WOW Plugin -->
        <script src="inc/wow.js"></script>
        
+       <!-- easyScroll Plugin -->
+        <script src="inc/easeScroll/jquery.easeScroll.js"></script>
+       
        
        
        <script>
@@ -28,6 +31,27 @@
 
             wow.init();	//WOW 초기화
   </script>
+
+             
+    <!-- easyScroll Plugin -->
+    <script src="inc/easeScroll/jquery.easeScroll.js"></script>               
+                            
+  <script>    
+
+        $(function(){  // 페이지 열릴 때 
+
+            $("html, body").easeScroll({    // 전체 문서에 'easeScroll' 플러그인 적용
+            animationTime:10000,     //스크롤 애니메이션 속도
+            stepSize:120,    //스크롤 이동 간격
+            //기타 기본 값 또는 생략 가능
+           });
+
+	   });  //$(function()
+  </script>
+   
+   
+   
+   
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
@@ -235,7 +259,7 @@
     
     <section id="secA">
         <ul id="listA">
-            <li class="wow fadeInDown">
+            <li class="wow fadeInUp" data-wow-offset="200">
                 <img src="images/banner01.jpg" />
                 <div class="caption">
                     <h2>WEB DESIGN</h2>
@@ -243,7 +267,7 @@
                 </div>
                 <button>Discover</button>
             </li>
-            <li class="wow fadeInUp">
+            <li class="wow fadeInUp" data-wow-delay="0.2s" data-wow-offset="200">
                 <img src="images/banner02.jpg" />
                 <div class="caption">
                     <h2>WEB DESIGN</h2>
@@ -251,7 +275,7 @@
                 </div>
                 <button>Discover</button>
             </li>
-            <li>
+            <li class="wow fadeInUp" data-wow-offset="200">
                 <img src="images/banner03.jpg" />
                 <div class="caption">
                     <h2>WEB DESIGN</h2>
@@ -259,7 +283,7 @@
                 </div>
                 <button>Discover</button>
             </li>
-            <li>
+            <li class="wow fadeInUp" data-wow-delay="0.2s" data-wow-offset="200">
                 <img src="images/banner04.jpg" />
                 <div class="caption">
                     <h2>WEB DESIGN</h2>
