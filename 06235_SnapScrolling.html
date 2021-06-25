@@ -67,8 +67,8 @@
         background:rgba(255,255,255,.6);
         border-radius: 25px; /* 50%면 늘어났을때 타원처럼 보여서 25px만 */
         position: relative;
-        text-align: center; font-size: 1.3rem;
-        margin:5px 0;
+        text-align: right; padding-right:1.2rem; font-size: 1.3rem;
+        margin:5px 0; margin-left: auto;
         transition: .3s; cursor: pointer;
     }
     
@@ -101,15 +101,21 @@
 		animationTime:10000,     //스크롤 애니메이션 속도
 		stepSize:120,    //스크롤 이동 간격
 		//기타 기본 값 또는 생략 가능
-	});
+        });    
+        
+        // 우측 LNB 버튼용
+        $('.list').on({
+            
+            mouseenter:function(){  // 마우스가 닿을 때
+                $(this).stop().animate({'width':'150px'},200); 
+            }
+            
+        });  // $('.list).on()
+            
+	
 
 	});  //$(function()
     
-	$(function(){  // 페이지 열릴 때 
-
-		
-
-	});  //$(function()
 
 
 </script>
