@@ -70,8 +70,16 @@
         
         // Type.js 플러그인 사용
         var typed = new Typed('#type', {
-            strings: ["First sentence.", "Second sentence."],
-            typeSpeed: 30
+            strings: ["<b>First</b> sentence.", "Second sentence.", "Beautyfull Weather"],
+            startDelay: 1000,     //문자 등장 전 대기 시간   
+            typeSpeed: 50,      //문자 타이핑 시간   
+            loop:true,               //효과 반복 여부(true, false)   
+            //cursorChar: '_',      //타이핑 커저 모양   
+            showCursor: false,    //타이핑 커저 보이기(true, false)   
+            backDelay: 2000,     //문자 완성 후 지워지기 전 대기 시간   
+            fadeOut: true,       //페이드아웃 효과(true, false)   
+            smartBackspace: true,
+            loopCount: true,
         });
     })
     
