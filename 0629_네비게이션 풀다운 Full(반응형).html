@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>네비게이션 풀다운 FULL(반응형)</title>
+
+<style>
+	* { box-sizing: border-box; margin:0; outline:0  }
+
+	header { 
+		position: fixed; top:0;
+		width:100%; background-color: #c9485b }
+
+	#navi { width:100%; max-width: 1000px; margin:auto }
+
+	ul { list-style: none; margin:0; padding:0;}   /*메인, 서브메뉴 박스*/
+
+	#menu {   /*메인메뉴 박스 ul*/
+		display:flex; flex-wrap:wrap }    
+
+	.main {   /*메인메뉴 리스트 li*/
+		width: 25%; text-align: center; position:relative; cursor:pointer;
+		padding: 12px 0px; color: white; font-weight: bold; transition:.3s }
+
+	.main:hover { color: red;  background: #f1f1f1 }
+
+
+	.submenu {    /*서브메뉴 박스 ul*/
+		position: absolute; width:100%; top:100%;z-index: 99; text-align: center; display: none }
+
+	.submenu li { width:100%; background:#fff; text-align:center;
+		padding: 14px 0px;width: 100% ; font-size: 15px; transition:.3s }
+
+	/*링크값이 있는 서브메뉴 스타일*/
+	.menuActive { color: black; cursor: pointer }   
+
+	/*링크값이 없는 서브메뉴 스타일*/
+	.menuInactive { color:#999; cursor: default }
+
+
+	.submenu li:hover { background: #f1f1f1 }
+
+	#sub_back {   /*서브메뉴 흰색 배경*/
+	z-index:98; width: 100%; height: 160px; 
+	background: #fff; border-bottom:2px solid #aaa; display: none}
+
+	#view { /*햄버거메뉴(펼침메뉴)*/
+		width:40px; height:40px;  border:none; 
+		font-size:1.5em; font-weight:bold; 
+		background-color:#555; color:#fff; cursor:pointer;
+		display:flex; justify-content:center; align-items:center; /*가운데 맞춤*/
+		display:none }
+
+
+	/*화면 해상도 700px 이하 스타일*/
+	@media screen and (max-width:700px){
+
+		header { width:auto; background:transparent }
+
+		#view { display:flex }  /*메뉴 펼침 버튼 보임*/
+
+		/*메뉴-상단에 고정, 초기에 보이지 않게*/
+		#menu { width:200px; background:#c9485b; display:none }
+
+		/*메인메뉴 li */
+		.main { width:100%; text-align:center }
+
+		/*서브메뉴 ul */
+		.submenu { left:200px; top:0; width:150px }  /*메인메뉴 오른쪽에 배치*/
+
+	}    
+</style>
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+<script>
+    
+	$(document).ready (function(){
+        
+		$('.main, #sub_back').mouseenter(function(){   //메인메뉴에 닿았을 때
+			if($(window).width()<=768){   //창의 크기가 768px 이하이면
+				$('.submenu').stop().slideUp(300);   //모든 서브메뉴 숨기고,
+				$(this).children('.submenu').stop().slideDown(300);  //해당 서브메뉴만 보임
+			}
+			else {   //창의 크기가 768px을 넘으면
+				$('.submenu, #sub_back').stop().slideDown(300);   //모든 서브메뉴 보임
+				//$('#sub_back').stop().slideDown(300);   //서브메뉴 배경 보임
+			}
+		});   //$('.main, #sub_back').mouseenter()
+
+		
+		$('.main, #sub_back').mouseleave(function(){   //메인메뉴에서 떨어졌을 때
+			if($(window).width()<=768){  //창의 크기가 768px 이하이면
+				$('.submenu').stop().slideUp();   //모든 서브메뉴 숨김
+			}
+			else {   //창의 크기가 768px을 넘으면
+				$('.submenu, #sub_back').stop().slideUp(300);   //모든 서브메뉴 숨김
+				//$('#sub_back').stop().slideUp(300);   //서브메뉴 배경 숨김
+			}
+		});   //$('.main, #sub_back').mouseleave()
+
+		
+		$('#view').click(function(){  //햄버거메뉴(펼침메뉴)를 클릭했을 때
+			$('#menu').fadeToggle(500);  //메뉴를 보이거나 숨김
+		});
+
+
+
+		//서브메뉴의 링크값에 따라 스타일 변경
+
+		var no = $('.sub').length;   //서브메뉴의 총 개수
+
+		var x;
+		for(x=0;  x<no;  x++){
+			var url = $('.sub').eq(x).attr('href');   //서브메뉴의 링크값
+			if(url)   //링크값 여부에 따라 각각의 스타일 적용하기
+				$('.sub').eq(x).addClass('menuActive');
+			else
+				$('.sub').eq(x).addClass('menuInactive');
+		}   //end for()
+
+
+		$('.sub, .main').click(function(){
+			var url = $(this).attr('href');   //서브메뉴의 링크값
+
+			//링크값이 있을 때만 해당 페이지로 이동하기
+			if(url)
+				window.location.href=url; 
+		});   //$('.sub').click()
+		
+    
+	});   //$(document).ready ()
+    
+    
+	$(window).resize(function(){   //창의 크기를 조절했을 때
+		if($(this).width() >700)     //창의 크기가 700px을 넘으면
+			$('#menu').removeAttr('style');   //메뉴의 스타일을 제거해 원래 모양으로 되돌림
+
+	});   //$(window).resize()
+</script>
+</head>
+
+<body>
+<header>
+    <nav id="navi">
+        
+        <div id="view">≡</div>
+        
+        <ul id="menu">
+            
+            <li class="main">천문대 소개
+                <ul class="submenu">
+                    <li class="sub" href="1_1.html">천문대 안내</li>
+                    <li class="sub" href="1_2.html">인사말</li>
+                    <li class="sub">오시는길</li>
+                </ul>
+            </li>
+            
+            <li class="main">이용안내
+                <ul class="submenu">
+                    <li class="sub" href="2_1.html">프로그램</li>
+                    <li class="sub" href="2_2.html">관람시간표</li>
+                    <li class="sub">이달의 별자리</li>
+                </ul>
+            </li>
+            
+            <li class="main">천문대 예약
+                <ul class="submenu">
+                    <li class="sub" href="3_1.html">예약하기</li>
+                    <li class="sub">예약확인</li>
+                    <li class="sub" href="3_2.html">예약취소</li>
+                </ul>
+            </li>
+            
+            <li class="main" href="4.html">커뮤니티
+            </li>
+            
+        </ul>
+    </nav>
+
+    <div id="sub_back"></div>  <!--서브메뉴 아래에 깔릴 배경-->
+    
+</header>
+
+    
+</body>
+</html>
