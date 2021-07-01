@@ -33,7 +33,36 @@
     
     .regular img { display: block; width:100% }
     
+    .slick-prev:before { content: "\2329" }  /* 이전버튼 문자 */
+    .slick-next:before { content: "\232a" }  /* 다음버튼 문자 */
     
+    .slick-prev {  /* 이전버튼 */
+        transform: scale(3) translateX(20px);
+        z-index: 9;
+    }
+      
+    .slick-next {  /* 다음버튼 */
+        transform: scale(3) translateX(-20px);
+        z-index: 9;
+    }
+    
+    .slick-dots {  /* 서클버튼 박스 */
+        margin-bottom: 40px;
+    }
+    
+    .slick-dots button {
+        transform:scale(2);
+    }
+        
+    .slick-dots li button::before {
+        color:#FFF;
+        opacity: .6;
+    }
+    
+    .slick-dots li.slick-active buttton::before {
+        color:#FFF;
+        opacity: 1;
+    }
     
 </style>
 
