@@ -28,7 +28,7 @@
 
       .swiper-container {
         width: 100%;
-        height: 100%;
+        height: 100%;  /* 보여질 높이값 조절 */
       }
 
       .swiper-slide {
@@ -85,9 +85,9 @@
     <!-- Initialize Swiper -->
     <script>
       var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 3,  /* 보여지는 슬라이드 개수 */
-        spaceBetween: 30, /* 각 슬라이드간 간격 */
-        slidesPerGroup: 3, /* 이동하는 슬라이드 수 */
+//        slidesPerView: 3,  /* 보여지는 슬라이드 개수 */
+//        spaceBetween: 30, /* 각 슬라이드간 간격 */
+        slidesPerGroup: 3, /* 이동하는 슬라이드 개수 */
         loop: true,
         loopFillGroupWithBlank: true,
         pagination: {
@@ -101,7 +101,32 @@
             autoplay: {
            delay: 3000,
          },          
-      });
+          
+        breakpoints: {    //반응형 Breakpoint
+                640: {
+                  slidesPerView: 1,
+                  spaceBetween: 0,
+                },
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 0,
+                },
+                1024: {
+                  slidesPerView: 4,
+                  spaceBetween: 0,
+                },
+              }        
+          
+      });   //new Swiper()
+        
+
+    $( ".swiper-slide" ).hover( function() {     //슬라이더에 마우스 닿으면
+        swiper .autoplay.stop();    //자동넘김 중지
+      }, function() {    //tmf라이더에 마우스 떠나면
+        swiper .autoplay.start();    //자동넘김 시작
+      }
+    );
+          
     </script>
   </body>
 </html>
