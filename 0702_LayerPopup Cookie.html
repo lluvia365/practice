@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title> LayerPopup Cookie </title>
+
+<style>
+
+   @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+    
+    
+
+   *{ box-sizing:border-box; margin:0; outline:0 }
+
+   body {
+       font-family: 'Nanum Gothic', sans-serif;
+   }
+    
+    
+    #popup {
+        width:400px;
+        position: fixed;
+        top:100px;
+        left:50px;
+        border:1px solid #CCC;
+        background: #FFF;
+    }
+    
+    #popup>h1 {
+        margin:10px;
+    }
+    
+    #close1 {
+        position: absolute;
+        top:5px; right: 10px;
+        font-size: 2rem;
+        cursor: pointer;
+        background:transparent; border: none;
+    }
+    
+    #popupcontents {
+        width:95%;
+        margin: 10px;
+        cursor: default;
+    }
+    
+    #popupcontents>img {
+        display: block;
+        width:100%;
+        border:1px solid #CCC;
+    }
+    
+    #popclose1, #popclose2 {
+        padding:5px 20px;
+        margin:10px 0 10px 10px;
+        font-size: 1rem;
+        border:none;
+        background:skyblue; color:#FFF;
+        cursor: pointer;
+    }
+
+    
+    
+
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- 드래그 작업을 위한 jQuery UI Plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+
+<script>
+
+	$(function(){  // 페이지 열릴 때 
+
+		
+
+	});  //$(function()
+
+
+</script>
+
+</head>
+
+
+<body>
+
+    <div id="popup">
+        <h1>리뉴얼 이벤트</h1>
+        <button id="close1">&times;</button>
+        <div id="popupcontents"><img src="images6/thumb04.jpg" /></div>
+        <button id="popclose1">&times; 오늘 하루 열지 않기</button>
+        <button id="popclose2">&times; 다시 보지 않기</button>
+    </div>
+
+
+
+</body>
+</html>
