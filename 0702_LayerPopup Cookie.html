@@ -20,13 +20,15 @@
    }
     
     
-    #popup {
+    #popup { /* 팝업창 */
         width:400px;
         position: fixed;
         top:100px;
         left:50px;
         border:1px solid #CCC;
         background: #FFF;
+        cursor: move;
+        display: none;
     }
     
     #popup>h1 {
@@ -72,12 +74,47 @@
 <!-- 드래그 작업을 위한 jQuery UI Plugin -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
+<!-- 쿠키(설정값을 기억) 사용을 위한 Plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
 <script>
 
 	$(function(){  // 페이지 열릴 때 
 
-		
+		$('#popup').draggable();  // 팝업창을 드래그 가능하게
+        
+        $('#close1').click(function(){
+            $('#popup').fadeOut();
+        });
+        
+        //쿠키의 가설
+        // popup 변수의 값이 'yes'이면 팝업창 열지 않기
+        // (하루보지 않기, 다시보지 않기 버튼을 클릭할  때 'yes'값을 적용)
+        
+        //페이지가 열릴때 쿠키값 확인하기
+        var popup = $.cookie('popup');
+        
+        if(popup == 'yes')  // 보지 않기 버튼 클릭한 기록이 있으면
+            $('#popup').hide();
+        else
+            $('#popup').show();
+        
+        
+        // '오늘하루 보지 않기' 버튼 클릭할 때
+        // popup 변수에 'yes'값을 하루 동안 기억하기
+        $('#popclose1').click(function(){
+            $.cookie('popup','yes',{expires:1,path:'/'});  
+            $('#popup').fadeOut();
+          });
+               
+        
+        // '다시 보지 않기' 버튼 클릭할 때
+        // popup 변수에 'yes'값을 계속 기억하기
+        $('#popclose2').click(function(){
+           $.cookie('popup','yes',{expires:9999999999999999,path:'/'});
+            $('#popup').fadeOut();
+        });
+        
 
 	});  //$(function()
 
@@ -93,7 +130,7 @@
         <h1>리뉴얼 이벤트</h1>
         <button id="close1">&times;</button>
         <div id="popupcontents"><img src="images6/thumb04.jpg" /></div>
-        <button id="popclose1">&times; 오늘 하루 열지 않기</button>
+        <button id="popclose1">&times; 오늘 하루 보지 않기</button>
         <button id="popclose2">&times; 다시 보지 않기</button>
     </div>
 
