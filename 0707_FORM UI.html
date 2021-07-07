@@ -103,7 +103,12 @@
         margin-top:20px;
     }
      
+    .box2 input[type=text] { width:30% }
     
+
+    #formA input:focus, #formA select {
+        box-shadow: 0 0 10px rgba(0,0,0,.3);
+    } 
     
     
 
@@ -111,11 +116,25 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<!-- jQuery UI 플러그인 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+
+
 <script>
 
 	$(function(){  // 페이지 열릴 때 
 
-		
+		$('#birthday').datepicker({
+            changeMonth:true,
+                changeYear:true,
+                dateFormat:'yy-mm-dd',
+                monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                dayNamesMin:['일','월','화','수','목','금','토']
+        });
 
 	});  //$(function()
 
@@ -205,7 +224,18 @@
                 <label for="w4">30 이상</label>
                 
             </div>
-
+            
+            <div class="box2">
+                <label for="call">Call Number</label>
+                <input type="text" id="call" required /> -
+                <input type="text" id="call" required /> -
+                <input type="text" id="call" required />
+            </div>
+            
+            <div class="box2">
+                <input type="reset" value="RESET" id="reset" />
+                <input type="submit" value="SUBMIT" id="submit" />
+            </div>
             
         </form>
     </div>
