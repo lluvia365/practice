@@ -54,6 +54,7 @@
     
     .box1 {
         width:50%;
+        margin-top: 20px;
     }
     
     .box1 input, .box1 select {
@@ -61,7 +62,7 @@
     }
         
     #formA input, #formA select {
-        line-height: 1.5rem;
+        line-height: 2.5rem; height: 2.5rem;
         border:1px solid #BEAEE2;
         border-radius: 5px;
         background:#FFF;
@@ -113,8 +114,8 @@
         <form id="formA">
             
             <div class="box1">
-                <label for="name">Name</label>
-                <input type="text" id="name" placeholder="Pet name" required/>
+                <label for="name">Name</label>  <!-- label:양식이름 -->
+                <input type="text" id="name" placeholder="Pet's name" required />  <!-- required:필수입 -->
             </div>
             
             <div class="box1">
@@ -128,7 +129,15 @@
                 </select>    
             </div>
             
+            <div class="box1">
+                <label for="breed">Breed</label>
+                <input type="number" id="breed" placeholder="Pet's breed" required />
+            </div>
             
+            <div class="box1">
+                <label for="birthday">Birthday</label>
+                <input type="text" id="birthday" placeholder="YYYY-MM-DD" required />
+            </div>
             
             
         </form>
