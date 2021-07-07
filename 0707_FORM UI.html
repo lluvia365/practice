@@ -71,10 +71,20 @@
         font-size: 1rem;
     }
     
+    /* 입력형식이 radio인 모든 양식 숨기기 */
+    .box1 input[type=radio] { display: none }
     
+    .box1 label {
+        display: block; width: 100%;
+    }
     
-    
-    
+    .box1 input[type=radio] + label {
+        background: #BEAEE2;
+        width:40%;
+        display: inline-block;
+        padding:10px;
+        border-radius: 5px;
+    }
     
     
 
@@ -103,7 +113,7 @@
     <div id="leftBox">  <!-- 왼쪽 박스 -->
         
         <h1>PUPASSURE</h1>
-        <img src="images6/thumb10.jpg">
+        <img src="images/image01.png">
     </div>
     
     
@@ -115,7 +125,7 @@
             
             <div class="box1">
                 <label for="name">Name</label>  <!-- label:양식이름 -->
-                <input type="text" id="name" placeholder="Pet's name" required />  <!-- required:필수입 -->
+                <input type="text" id="name" placeholder="Pet's name" required />  <!-- required:필수입력 -->
             </div>
             
             <div class="box1">
@@ -139,6 +149,15 @@
                 <input type="text" id="birthday" placeholder="YYYY-MM-DD" required />
             </div>
             
+            <div class="box1">
+                <label>Gender</label>
+                <input type="radio" id="female" name="gender">
+                <label for="female">Female</label>
+                
+                <input type="radio" id="male" name="gender">
+                <label for="male">Male</label>
+                
+            </div>
             
         </form>
     </div>
