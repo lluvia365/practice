@@ -72,19 +72,38 @@
     }
     
     /* 입력형식이 radio인 모든 양식 숨기기 */
-    .box1 input[type=radio] { display: none }
+    .box1 input[type=radio],
+    .box2 input[type=checkbox] { display: none }
     
-    .box1 label {
+    .box1 label, .box2 label {
         display: block; width: 100%;
     }
     
-    .box1 input[type=radio] + label {
+    .box1 input[type=radio] + label,
+    .box2 input[type=checkbox] + label{
         background: #BEAEE2;
         width:40%;
         display: inline-block;
         padding:10px;
         border-radius: 5px;
+        text-align: center;
+        cursor: pointer;
     }
+    
+    .box2 input[type=checkbox] + label { width:20% }
+    
+    .box1 input[type=radio]:checked + label,
+    .box2 input[type=checkbox]:checked + label {
+        background: #F08FC0;
+    }
+    
+    
+    .box2 { 
+        width:100%;
+        margin-top:20px;
+    }
+     
+    
     
     
 
@@ -124,7 +143,8 @@
         <form id="formA">
             
             <div class="box1">
-                <label for="name">Name</label>  <!-- label:양식이름 -->
+                <label for="name">Name</label>
+                <!-- label:양식이름 / for:~의 -->
                 <input type="text" id="name" placeholder="Pet's name" required />  <!-- required:필수입력 -->
             </div>
             
@@ -151,13 +171,41 @@
             
             <div class="box1">
                 <label>Gender</label>
-                <input type="radio" id="female" name="gender">
+                <input checked type="radio" id="female" name="gender">
                 <label for="female">Female</label>
                 
                 <input type="radio" id="male" name="gender">
                 <label for="male">Male</label>
                 
             </div>
+                      
+            <div class="box1">
+                <label>Spayed or Neutered</label>
+                <input type="radio" id="spayed" name="spayed">
+                <label for="spayed">Spayed</label>
+                
+                <input type="radio" id="neutered" name="spayed">
+                <label for="neutered">Neutered</label>
+                
+            </div>
+            
+            
+            <div class="box2">
+                <label>Weight</label>
+                <input type="checkbox" id="w1" name="weigth">
+                <label for="w1">0~10</label>
+                
+                <input type="checkbox" id="w2" name="weigth">
+                <label for="w2">11~20</label>
+                
+                <input type="checkbox" id="w3" name="weigth">
+                <label for="w3">21~30</label>
+                
+                <input type="checkbox" id="w4" name="weigth">
+                <label for="w4">30 이상</label>
+                
+            </div>
+
             
         </form>
     </div>
