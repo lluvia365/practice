@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title> FORM UI </title>
+
+<style>
+
+   @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+   *{ box-sizing:border-box; margin:0; outline:0 }
+
+   body {
+       font-family: 'Nanum Gothic', sans-serif;
+   }
+    
+    #secA {
+        width:95%; max-width:1000px;
+        margin:50px auto;
+        
+        display: flex;
+        flex-wrap: wrap;
+        
+        height: 80vh; /* 내용없어서 공간확보용 (내용있으면 지우기) */
+    }
+    
+    #leftBox {
+        width:30%;
+        background: #BEAEE2;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* 수평정렬(좌우) */
+        align-content: space-between; /* 수직정렬(위아래) */
+        
+        color:RED; padding-top: 20px;
+    }
+    
+    #leftBox>img { width:70% }
+    
+    
+    #rightBox {
+        width:70%;
+        background:#F7DBF0;
+        padding: 30px;
+    }
+    
+    #formA {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .box1 {
+        width:50%;
+    }
+    
+    .box1 input, .box1 select {
+        width:90%;
+    }
+        
+    #formA input, #formA select {
+        line-height: 1.5rem;
+        border:1px solid #BEAEE2;
+        border-radius: 5px;
+        background:#FFF;
+        color:#555;
+        padding:5px;
+        font-size: 1rem;
+    }
+    
+    
+    
+    
+    
+    
+    
+
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+
+	$(function(){  // 페이지 열릴 때 
+
+		
+
+	});  //$(function()
+
+
+</script>
+
+</head>
+
+
+<body>
+
+<section id="secA">
+    
+    <div id="leftBox">  <!-- 왼쪽 박스 -->
+        
+        <h1>PUPASSURE</h1>
+        <img src="images6/thumb10.jpg">
+    </div>
+    
+    
+    <div id="rightBox">  <!-- 오른쪽 박스 -->
+        
+        <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
+        
+        <form id="formA">
+            
+            <div class="box1">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Pet name" required/>
+            </div>
+            
+            <div class="box1">
+               <label for="type">Type</label>
+                <select id="type">
+                    <option value="0">Select Pets Type</option>
+                    <option value="1">SBichon Frise</option>
+                    <option value="2">Boston Terrier</option>
+                    <option value="3">Dalmation</option>
+                    <option value="4">Poodle</option>
+                </select>    
+            </div>
+            
+            
+            
+            
+        </form>
+    </div>
+    
+</section>
+
+
+
+</body>
+</html>
